@@ -1,0 +1,13 @@
+/*****************************************
+* UTILITY CLASSES
+*****************************************/
+
+@use "../utils/" as *;
+
+.red {
+  outline: red 1px solid;
+}
+
+.blue {
+  outline: blue 1px solid;
+}

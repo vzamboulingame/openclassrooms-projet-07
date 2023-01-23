@@ -1,0 +1,54 @@
+@use "./variables" as *;
+@use "./functions" as *;
+
+@mixin responsive-font-size {
+  @if $mobile-first {
+    @media only screen and (min-width: $min-width) {
+      html {
+        font-size: calc($html-font-size + $resp-font-vw);
+      }
+    }
+  } @else {
+    @media only screen and (max-width: calc($max-width - 1px)) {
+      html {
+        font-size: calc($html-font-size - $resp-font-vw);
+      }
+    }
+  }
+}
+
+@mixin for-mobile {
+  @if $mobile-first {
+    @media only screen and (min-width: $mobile-breakpoint) {
+      @content;
+    }
+  } @else {
+    @media only screen and (max-width: calc($mobile-breakpoint - 1px)) {
+      @content;
+    }
+  }
+}
+
+@mixin for-tablet {
+  @if $mobile-first {
+    @media only screen and (min-width: $tablet-breakpoint) {
+      @content;
+    }
+  } @else {
+    @media only screen and (max-width: calc($tablet-breakpoint - 1px)) {
+      @content;
+    }
+  }
+}
+
+@mixin for-desktop {
+  @if $mobile-first {
+    @media only screen and (min-width: $desktop-breakpoint) {
+      @content;
+    }
+  } @else {
+    @media only screen and (max-width: calc($desktop-breakpoint - 1px)) {
+      @content;
+    }
+  }
+}
