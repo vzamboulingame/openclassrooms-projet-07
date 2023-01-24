@@ -182,6 +182,7 @@ input {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin: 1em 0;
 }
 .form-search {
   display: flex;
@@ -205,4 +206,43 @@ input {
   height: 100%;
   background: #e7e7e7;
   font-size: 3rem;
+}
+.form-filter {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  margin: 2em 0;
+}
+.form-filter-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 17rem;
+  height: 7rem;
+  border-radius: 0.5rem;
+  padding: 1em;
+  margin-right: 1em;
+  cursor: pointer;
+}
+.form-filter-button-blue {
+  background-color: #3282f7;
+}
+.form-filter-button-green {
+  background-color: #68d9a4;
+}
+.form-filter-button-orange {
+  background-color: #ed6454;
+}
+.form-filter-name {
+  color: #ffffff;
+  font-family: "Lato";
+  font-weight: 700;
+  font-size: 1.8rem;
+}
+.form-filter-chevron {
+  color: #ffffff;
+  font-size: 1.8rem;
 }/*# sourceMappingURL=style.css.map */
