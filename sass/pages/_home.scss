@@ -17,8 +17,10 @@
     }
 }
 
+fieldset,
 input {
     border: none;
+    outline: none;
 }
 
 .form {
@@ -28,12 +30,28 @@ input {
     align-items: center;
 
     &-search {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
         width: 100%;
-        height: 6.9rem;
+        padding: 0 1em;
         border-radius: 0.5rem;
-        padding: 1em;
-        font-family: "Lato";
-        font-size: 1.8rem;
         background: $color-search-input;
+
+        &-input {
+            width: 100%;
+            height: 6.9rem;
+            border-radius: 0.5rem;
+            font-family: "Lato";
+            font-size: 2rem;
+            background: $color-search-input;
+        }
+
+        &-icon {
+            height: 100%;
+            background: $color-search-input;
+            font-size: 3rem;
+        }
     }
 }
