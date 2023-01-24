@@ -20,6 +20,18 @@ html {
 
 body {
   font-size: 1.6rem;
+  width: 80%;
+  margin: 0 auto;
+}
+@media only screen and (min-width: 1024px) {
+  body {
+    width: 90%;
+  }
+}
+@media only screen and (min-width: 768px) {
+  body {
+    width: 95%;
+  }
 }
 
 img,
@@ -96,4 +108,16 @@ h6 {
 }
 /*****************************************
 * HOME PAGE SPECIFIC STYLES
-*****************************************//*# sourceMappingURL=style.css.map */
+*****************************************/
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1em;
+}
+.header-logo {
+  width: 26.8rem;
+  height: 9.3rem;
+  -o-object-fit: contain;
+     object-fit: contain;
+}/*# sourceMappingURL=style.css.map */

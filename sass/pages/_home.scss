@@ -3,3 +3,16 @@
 *****************************************/
 
 @use "../utils/" as *;
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1em;
+
+    &-logo {
+        width: 26.8rem;
+        height: 9.3rem;
+        object-fit: contain;
+    }
+}

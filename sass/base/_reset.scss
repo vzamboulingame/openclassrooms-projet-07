@@ -25,6 +25,16 @@ html {
 
 body {
   font-size: $body-font-size;
+  width: 80%;
+  margin: 0 auto;
+
+  @include for-tablet {
+    width: 90%;
+  }
+
+  @include for-mobile {
+    width: 95%;
+  }
 }
 
 img,
