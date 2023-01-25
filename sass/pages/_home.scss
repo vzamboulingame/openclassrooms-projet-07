@@ -58,9 +58,10 @@ input {
 
     &-filter {
         display: flex;
-        flex-direction: row;
+        flex-flow: row wrap;
         justify-content: flex-start;
         align-items: center;
+        gap: 1em;
         width: 100%;
         margin: 2em 0;
 
@@ -73,7 +74,6 @@ input {
             height: 7rem;
             border-radius: 0.5rem;
             padding: 1em;
-            margin-right: 1em;
             cursor: pointer;
 
             &-blue {
