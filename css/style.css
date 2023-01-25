@@ -172,8 +172,15 @@ h6 {
 }
 
 fieldset,
-input {
+input,
+ul,
+li,
+span {
   all: unset;
+}
+
+.main {
+  padding: 2em 0;
 }
 
 .form {
@@ -182,7 +189,6 @@ input {
   justify-content: center;
   align-items: center;
   width: 100%;
-  margin: 1em 0;
 }
 .form-search {
   display: flex;
@@ -256,4 +262,93 @@ input {
 .form-filter-chevron {
   color: #ffffff;
   font-size: 1.8rem;
+}
+
+.recipes {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 38rem);
+  justify-content: space-between;
+  gap: 3em;
+}
+.recipes-card {
+  display: flex;
+  flex-direction: column;
+  width: 38rem;
+  height: 36rem;
+  border-radius: 0.5rem;
+  color: #000000;
+  font-family: "Lato";
+}
+.recipes-card-img {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 48%;
+  border-radius: 0.5rem 0.5rem 0 0;
+  background-color: #c7bebe;
+}
+.recipes-card-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  height: 52%;
+  padding: 1em;
+  border-radius: 0 0 0.5rem 0.5rem;
+  background-color: #e7e7e7;
+}
+.recipes-card-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.recipes-card-title {
+  font-size: 1.8rem;
+}
+.recipes-card-duration {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  -moz-column-gap: 0.5em;
+       column-gap: 0.5em;
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+.recipes-card-desc {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  height: 100%;
+  margin-top: 1em;
+}
+.recipes-card-ingredients, .recipes-card-todo {
+  width: 50%;
+  height: 100%;
+  font-size: 1.2rem;
+}
+.recipes-card-ingredients {
+  font-family: "Lato";
+}
+.recipes-card-ingredients-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  -moz-column-gap: 0.5em;
+       column-gap: 0.5em;
+}
+.recipes-card-ingredients-name {
+  font-weight: 700;
+}
+.recipes-card-todo {
+  font-family: "Roboto";
+  padding-left: 1em;
 }/*# sourceMappingURL=style.css.map */

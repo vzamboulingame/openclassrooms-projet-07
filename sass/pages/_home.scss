@@ -18,8 +18,15 @@
 }
 
 fieldset,
-input {
+input,
+ul,
+li,
+span {
     all: unset;
+}
+
+.main {
+    padding: 2em 0;
 }
 
 .form {
@@ -28,7 +35,6 @@ input {
     justify-content: center;
     align-items: center;
     width: 100%;
-    margin: 1em 0;
 
     &-search {
         display: flex;
@@ -36,14 +42,14 @@ input {
         justify-content: center;
         align-items: center;
         width: 100%;
-        border-radius: 0.5rem;
+        border-radius: $border-radius;
         background: $color-search-input;
 
         &-input {
             width: 100%;
             height: 6.9rem;
             padding-left: 1em;
-            border-radius: 0.5rem;
+            border-radius: $border-radius;
             font-family: "Lato";
             font-size: 2rem;
             background: $color-search-input;
@@ -73,7 +79,7 @@ input {
             align-items: center;
             width: 17rem;
             height: 7rem;
-            border-radius: 0.5rem;
+            border-radius: $border-radius;
             padding: 1em;
             cursor: pointer;
 
@@ -105,6 +111,106 @@ input {
         &-chevron {
             color: #ffffff;
             font-size: 1.8rem;
+        }
+    }
+}
+
+.recipes {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 38rem);
+    justify-content: space-between;
+    gap: 3em;
+
+    &-card {
+        display: flex;
+        flex-direction: column;
+        width: 38rem;
+        height: 36rem;
+        border-radius: $border-radius;
+        color: #000000;
+        font-family: "Lato";
+
+        &-img {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 48%;
+            border-radius: 0.5rem 0.5rem 0 0;
+            background-color: $color-recipe-card-img;
+        }
+
+        &-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            width: 100%;
+            height: 52%;
+            padding: 1em;
+            border-radius: 0 0 0.5rem 0.5rem;
+            background-color: $color-recipe-card-info;
+        }
+
+        &-header {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        &-title {
+            font-size: 1.8rem;
+        }
+
+        &-duration {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            column-gap: 0.5em;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        &-desc {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: flex-start;
+            width: 100%;
+            height: 100%;
+            margin-top: 1em;
+        }
+
+        &-ingredients,
+        &-todo {
+            width: 50%;
+            height: 100%;
+            font-size: 1.2rem;
+        }
+
+        &-ingredients {
+            font-family: "Lato";
+
+            &-item {
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-start;
+                align-items: flex-start;
+                column-gap: 0.5em;
+            }
+
+            &-name {
+                font-weight: 700;
+            }
+        }
+
+        &-todo {
+            font-family: "Roboto";
+            padding-left: 1em;
         }
     }
 }
