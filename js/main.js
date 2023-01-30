@@ -1,5 +1,1 @@
-/* VARIABLE DEFINITION */
-
-/* FUNCTION DEFINITION */
-
-/* MAIN PROGRAM EXECUTION */
+import { fetchJsonData } from "./utils/fetchJsonData.js";
