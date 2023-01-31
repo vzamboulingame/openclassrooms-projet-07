@@ -162,7 +162,11 @@ span {
         }
 
         &-title {
+            max-width: 70%;
             font-size: 1.8rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         &-duration {
@@ -183,7 +187,6 @@ span {
             width: 100%;
             height: 100%;
             margin-top: 1em;
-            white-space: normal;
             overflow: hidden;
             text-overflow: ellipsis;
         }
@@ -197,6 +200,8 @@ span {
 
         &-ingredients {
             font-family: "Lato";
+            overflow: hidden;
+            text-overflow: ellipsis;
 
             &-item {
                 display: flex;
@@ -215,6 +220,8 @@ span {
             font-family: "Roboto";
             text-align: justify;
             padding-left: 1em;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
     }
 }
