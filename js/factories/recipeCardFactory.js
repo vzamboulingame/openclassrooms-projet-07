@@ -1,5 +1,4 @@
 export function recipeCardFactory(data) {
-  // Destructuring the data object to extract its properties
   const { name, ingredients, time, description } = data;
 
   // Function that will generate the recipe card header innerHTML
@@ -62,10 +61,8 @@ export function recipeCardFactory(data) {
     listitem.append(recipesCardImg);
     listitem.append(recipesCardInfo);
 
-    // Return the listitem element
     return listitem;
   }
 
-  // Returning an object with the getRecipeCardDOM function
   return { getRecipeCardDOM };
 }
