@@ -200,6 +200,7 @@ span {
 
         &-ingredients {
             font-family: "Lato";
+            white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
 
@@ -209,6 +210,9 @@ span {
                 justify-content: flex-start;
                 align-items: flex-start;
                 column-gap: 0.5em;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
             }
 
             &-name {

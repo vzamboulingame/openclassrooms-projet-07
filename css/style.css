@@ -342,6 +342,7 @@ span {
 }
 .recipes-card-ingredients {
   font-family: "Lato";
+  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -352,6 +353,9 @@ span {
   align-items: flex-start;
   -moz-column-gap: 0.5em;
        column-gap: 0.5em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .recipes-card-ingredients-name {
   font-weight: 700;
