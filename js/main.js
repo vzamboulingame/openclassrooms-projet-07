@@ -3,21 +3,36 @@ import { recipeCardFactory } from "./factories/recipeCardFactory.js";
 
 let filteredRecipesArray = recipesArray;
 
-const uniqueIngredientsArray = Array.from(
-  new Set(
-    recipesArray.flatMap((recipe) =>
-      recipe.ingredients.map((ingredient) => ingredient.ingredient)
+// Function to get unique ingredients array
+function getUniqueIngredientsArray(array) {
+  const uniqueIngredientsArray = Array.from(
+    new Set(
+      array.flatMap((recipe) =>
+        recipe.ingredients.map((ingredient) => ingredient.ingredient)
+      )
     )
-  )
-).sort();
+  ).sort();
 
-const uniqueAppliancesArray = Array.from(
-  new Set(recipesArray.map((recipe) => recipe.appliance))
-).sort();
+  return uniqueIngredientsArray;
+}
 
-const uniqueUstensilsArray = Array.from(
-  new Set(recipesArray.flatMap((recipe) => recipe.ustensils))
-).sort();
+// Function to get unique appliances array
+function getUniqueAppliancesArray(array) {
+  const uniqueAppliancesArray = Array.from(
+    new Set(array.map((recipe) => recipe.appliance))
+  ).sort();
+
+  return uniqueAppliancesArray;
+}
+
+// Function to get unique ustensils array
+function getUniqueUstensilsArray(array) {
+  const uniqueUstensilsArray = Array.from(
+    new Set(array.flatMap((recipe) => recipe.ustensils))
+  ).sort();
+
+  return uniqueUstensilsArray;
+}
 
 // Function to render recipe cards list
 function renderRecipeCards(array) {
