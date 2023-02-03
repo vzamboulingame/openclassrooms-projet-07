@@ -218,50 +218,79 @@ span {
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-start;
   gap: 1em;
   width: 100%;
   margin: 2em 0;
 }
-.form-filter-button {
+.form-filter-container {
+  display: flex;
+  flex-flow: column nowrap;
+  border-radius: 0.5rem;
+  width: 17rem;
+  padding: 1em;
+}
+.form-filter-dropdown {
+  width: 60rem;
+}
+.form-filter-span {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
-  width: 17rem;
-  height: 7rem;
-  border-radius: 0.5rem;
-  padding: 1em;
+  align-items: flex-start;
+  width: 100%;
   cursor: pointer;
+  transition: 0.2s;
 }
-.form-filter-button-blue {
+.form-filter-blue {
   background-color: #3282f7;
 }
-.form-filter-button-green {
+.form-filter-green {
   background-color: #68d9a4;
 }
-.form-filter-button-orange {
+.form-filter-orange {
   background-color: #ed6454;
 }
-.form-filter-name {
+.form-filter-input {
   color: #ffffff;
   font-family: "Lato";
   font-weight: 700;
   font-size: 1.8rem;
+  width: 80%;
   max-width: 80%;
 }
-.form-filter-name::-moz-placeholder {
+.form-filter-input::-moz-placeholder {
   color: #ffffff;
 }
-.form-filter-name:-ms-input-placeholder {
+.form-filter-input:-ms-input-placeholder {
   color: #ffffff;
 }
-.form-filter-name::placeholder {
+.form-filter-input::placeholder {
   color: #ffffff;
 }
 .form-filter-chevron {
   color: #ffffff;
   font-size: 1.8rem;
+}
+.form-filter-list {
+  display: grid;
+  grid-template-columns: repeat(1fr 1fr 1fr);
+  justify-content: space-between;
+  gap: 1em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.form-filter-list-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 15rem;
+  font-family: "Lato";
+  font-size: 1.8rem;
+}
+.form-filter-list-button {
+  border: none;
+  background-color: transparent;
 }
 
 .recipes {

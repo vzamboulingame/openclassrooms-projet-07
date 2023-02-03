@@ -67,40 +67,51 @@ span {
         display: flex;
         flex-flow: row wrap;
         justify-content: flex-start;
-        align-items: center;
+        align-items: flex-start;
         gap: 1em;
         width: 100%;
         margin: 2em 0;
 
-        &-button {
+        &-container {
+            display: flex;
+            flex-flow: column nowrap;
+            border-radius: $border-radius;
+            width: 17rem;
+            padding: 1em;
+        }
+
+        &-dropdown {
+            width: 60rem;
+        }
+
+        &-span {
             display: flex;
             flex-direction: row;
             justify-content: space-between;
-            align-items: center;
-            width: 17rem;
-            height: 7rem;
-            border-radius: $border-radius;
-            padding: 1em;
+            align-items: flex-start;
+            width: 100%;
             cursor: pointer;
-
-            &-blue {
-                background-color: #3282f7;
-            }
-
-            &-green {
-                background-color: #68d9a4;
-            }
-
-            &-orange {
-                background-color: #ed6454;
-            }
+            transition: $transition-time;
         }
 
-        &-name {
+        &-blue {
+            background-color: #3282f7;
+        }
+
+        &-green {
+            background-color: #68d9a4;
+        }
+
+        &-orange {
+            background-color: #ed6454;
+        }
+
+        &-input {
             color: #ffffff;
             font-family: "Lato";
             font-weight: 700;
             font-size: 1.8rem;
+            width: 80%;
             max-width: 80%;
 
             &::placeholder {
@@ -111,6 +122,29 @@ span {
         &-chevron {
             color: #ffffff;
             font-size: 1.8rem;
+        }
+
+        &-list {
+            display: grid;
+            grid-template-columns: repeat(1fr 1fr 1fr);
+            justify-content: space-between;
+            gap: 1em;
+            overflow: hidden;
+            text-overflow: ellipsis;
+
+            &-item {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 15rem;
+                font-family: "Lato";
+                font-size: 1.8rem;
+            }
+
+            &-button {
+                border: none;
+                background-color: transparent;
+            }
         }
     }
 }

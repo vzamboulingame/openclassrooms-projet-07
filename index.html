@@ -27,20 +27,29 @@
         <i class="form-search-icon fa-solid fa-magnifying-glass"></i>
       </fieldset>
       <fieldset class="form-filter">
-        <div class="form-filter-button form-filter-button-blue">
-          <input class="form-filter-name" type="text" placeholder="Ingrédients" onfocus="this.placeholder=''"
-            onblur="this.placeholder='Ingrédients'" aria-label="Zone de saisie pour filtrage par Ingrédients">
-          <i class="form-filter-chevron fa-solid fa-chevron-down"></i>
+        <div class="form-filter-container form-filter-blue">
+          <span class="form-filter-span">
+            <input class="form-filter-input" type="text" placeholder="Ingrédients" onfocus="this.placeholder=''"
+              onblur="this.placeholder='Ingrédients'" aria-label="Zone de saisie pour filtrage par Ingrédients">
+            <i class="form-filter-chevron fa-solid fa-chevron-down"></i>
+          </span>
+          <ul class="form-filter-list" id="ingredientsList"></ul>
         </div>
-        <div class="form-filter-button form-filter-button-green">
-          <input class="form-filter-name" type="text" placeholder="Appareils" onfocus="this.placeholder=''"
-            onblur="this.placeholder='Appareils'" aria-label="Zone de saisie pour filtrage par Appareils">
-          <i class="form-filter-chevron fa-solid fa-chevron-down"></i>
+        <div class="form-filter-container form-filter-green">
+          <span class="form-filter-span">
+            <input class="form-filter-input" type="text" placeholder="Appareils" onfocus="this.placeholder=''"
+              onblur="this.placeholder='Appareils'" aria-label="Zone de saisie pour filtrage par Appareils">
+            <i class="form-filter-chevron fa-solid fa-chevron-down"></i>
+          </span>
+          <ul class="form-filter-list" id="appliancesList"></ul>
         </div>
-        <div class="form-filter-button form-filter-button-orange">
-          <input class="form-filter-name" type="text" placeholder="Ustensiles" onfocus="this.placeholder=''"
-            onblur="this.placeholder='Ustensiles'" aria-label="Zone de saisie pour filtrage par Ustensiles">
-          <i class="form-filter-chevron fa-solid fa-chevron-down"></i>
+        <div class="form-filter-container form-filter-orange">
+          <span class="form-filter-span">
+            <input class="form-filter-input" type="text" placeholder="Ustensiles" onfocus="this.placeholder=''"
+              onblur="this.placeholder='Ustensiles'" aria-label="Zone de saisie pour filtrage par Ustensiles">
+            <i class="form-filter-chevron fa-solid fa-chevron-down"></i>
+          </span>
+          <ul class="form-filter-list" id="ustensilsList"></ul>
         </div>
       </fieldset>
     </form>

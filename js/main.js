@@ -1,38 +1,16 @@
 import { recipesArray } from "./data/recipes.js";
+import {
+  getIngredientsArray,
+  getAppliancesArray,
+  getUstensilsArray,
+} from "./utils/getFilterArrays.js";
 import { recipeCardFactory } from "./factories/recipeCardFactory.js";
+import { filterListItemFactory } from "./factories/filterListItemFactory.js";
 
-let filteredRecipesArray = recipesArray;
-
-// Function to get unique ingredients array
-function getUniqueIngredientsArray(array) {
-  const uniqueIngredientsArray = Array.from(
-    new Set(
-      array.flatMap((recipe) =>
-        recipe.ingredients.map((ingredient) => ingredient.ingredient)
-      )
-    )
-  ).sort();
-
-  return uniqueIngredientsArray;
-}
-
-// Function to get unique appliances array
-function getUniqueAppliancesArray(array) {
-  const uniqueAppliancesArray = Array.from(
-    new Set(array.map((recipe) => recipe.appliance))
-  ).sort();
-
-  return uniqueAppliancesArray;
-}
-
-// Function to get unique ustensils array
-function getUniqueUstensilsArray(array) {
-  const uniqueUstensilsArray = Array.from(
-    new Set(array.flatMap((recipe) => recipe.ustensils))
-  ).sort();
-
-  return uniqueUstensilsArray;
-}
+const filteredRecipesArray = recipesArray;
+const ingredientsArray = getIngredientsArray(filteredRecipesArray);
+const appliancesArray = getAppliancesArray(filteredRecipesArray);
+const ustensilsArray = getUstensilsArray(filteredRecipesArray);
 
 // Function to render recipe cards list
 function renderRecipeCards(array) {
@@ -45,4 +23,35 @@ function renderRecipeCards(array) {
   });
 }
 
+// Function to render filter list items
+function renderFilterListItems(listId, tagArray) {
+  const filterList = document.getElementById(`${listId}`);
+
+  console.log(filterList);
+
+  tagArray.forEach((tag) => {
+    const filterListItemModel = filterListItemFactory(tag);
+    const filterListItemDOM = filterListItemModel.getRecipeCardDOM();
+    filterList.append(filterListItemDOM);
+  });
+}
+
+const formFilterInputs = document.querySelectorAll(".form-filter-input");
+
+formFilterInputs.forEach((element) => {
+  element.addEventListener("focus", (e) => {
+    e.target.parentElement.parentElement.classList.add("form-filter-dropdown");
+  });
+
+  element.addEventListener("blur", (e) => {
+    e.target.parentElement.parentElement.classList.remove(
+      "form-filter-dropdown"
+    );
+  });
+});
+
 renderRecipeCards(filteredRecipesArray);
+
+console.log(ingredientsArray);
+console.log(appliancesArray);
+console.log(ustensilsArray);
