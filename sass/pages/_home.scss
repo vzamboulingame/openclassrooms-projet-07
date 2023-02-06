@@ -77,11 +77,13 @@ span {
             flex-flow: column nowrap;
             border-radius: $border-radius;
             width: 17rem;
-            padding: 1em;
+            padding: 1.5em 1em;
+            transition: $transition-time;
         }
 
         &-dropdown {
             width: 60rem;
+            transition: $transition-time;
         }
 
         &-span {
@@ -91,7 +93,6 @@ span {
             align-items: flex-start;
             width: 100%;
             cursor: pointer;
-            transition: $transition-time;
         }
 
         &-blue {
@@ -125,25 +126,27 @@ span {
         }
 
         &-list {
-            display: grid;
-            grid-template-columns: repeat(1fr 1fr 1fr);
+            display: none;
+            grid-template-columns: repeat(auto-fill, 15rem);
             justify-content: space-between;
             gap: 1em;
+            width: 100%;
             overflow: hidden;
             text-overflow: ellipsis;
 
             &-item {
                 display: flex;
-                justify-content: center;
+                justify-content: flex-start;
                 align-items: center;
                 width: 15rem;
                 font-family: "Lato";
                 font-size: 1.8rem;
-            }
-
-            &-button {
+                color: #ffffff;
                 border: none;
-                background-color: transparent;
+                width: 100%;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                cursor: pointer;
             }
         }
     }

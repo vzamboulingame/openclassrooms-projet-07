@@ -8,6 +8,7 @@ import { recipeCardFactory } from "./factories/recipeCardFactory.js";
 import { filterListItemFactory } from "./factories/filterListItemFactory.js";
 
 const filteredRecipesArray = recipesArray;
+
 const ingredientsArray = getIngredientsArray(filteredRecipesArray);
 const appliancesArray = getAppliancesArray(filteredRecipesArray);
 const ustensilsArray = getUstensilsArray(filteredRecipesArray);
@@ -23,35 +24,53 @@ function renderRecipeCards(array) {
   });
 }
 
-// Function to render filter list items
-function renderFilterListItems(listId, tagArray) {
-  const filterList = document.getElementById(`${listId}`);
+// Function to render filter tag list
+function renderFilterTagList(filterListId, filterTagArray) {
+  const filterList = document.getElementById(filterListId);
 
-  console.log(filterList);
-
-  tagArray.forEach((tag) => {
+  filterTagArray.forEach((tag) => {
     const filterListItemModel = filterListItemFactory(tag);
-    const filterListItemDOM = filterListItemModel.getRecipeCardDOM();
+    const filterListItemDOM = filterListItemModel.getFilterListItemDOM();
+
     filterList.append(filterListItemDOM);
   });
 }
 
-const formFilterInputs = document.querySelectorAll(".form-filter-input");
+// Function to add event listeners to form filter elements
+function addFormFilterEventListeners() {
+  const formFilterContainers = document.querySelectorAll(
+    ".form-filter-container"
+  );
 
-formFilterInputs.forEach((element) => {
-  element.addEventListener("focus", (e) => {
-    e.target.parentElement.parentElement.classList.add("form-filter-dropdown");
-  });
+  formFilterContainers.forEach((element) => {
+    const formFilterContainer = element;
+    const formFilterInput =
+      formFilterContainer.querySelector(".form-filter-input");
+    const formFilterList =
+      formFilterContainer.querySelector(".form-filter-list");
 
-  element.addEventListener("blur", (e) => {
-    e.target.parentElement.parentElement.classList.remove(
-      "form-filter-dropdown"
-    );
+    console.log(formFilterContainer.id);
+    console.log(formFilterInput.id);
+    console.log(formFilterList.id);
+
+    formFilterInput.addEventListener("focus", () => {
+      formFilterContainer.classList.add("form-filter-dropdown");
+      formFilterList.style.display = "grid";
+      formFilterList.setAttribute("aria-hidden", "false");
+    });
+
+    formFilterInput.addEventListener("blur", () => {
+      formFilterContainer.classList.remove("form-filter-dropdown");
+      formFilterList.style.display = "none";
+      formFilterList.setAttribute("aria-hidden", "true");
+    });
   });
-});
+}
 
 renderRecipeCards(filteredRecipesArray);
 
-console.log(ingredientsArray);
-console.log(appliancesArray);
-console.log(ustensilsArray);
+renderFilterTagList("ingredientsList", ingredientsArray);
+renderFilterTagList("appliancesList", appliancesArray);
+renderFilterTagList("ustensilsList", ustensilsArray);
+
+addFormFilterEventListeners();

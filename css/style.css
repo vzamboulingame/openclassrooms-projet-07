@@ -228,10 +228,12 @@ span {
   flex-flow: column nowrap;
   border-radius: 0.5rem;
   width: 17rem;
-  padding: 1em;
+  padding: 1.5em 1em;
+  transition: 0.2s;
 }
 .form-filter-dropdown {
   width: 60rem;
+  transition: 0.2s;
 }
 .form-filter-span {
   display: flex;
@@ -240,7 +242,6 @@ span {
   align-items: flex-start;
   width: 100%;
   cursor: pointer;
-  transition: 0.2s;
 }
 .form-filter-blue {
   background-color: #3282f7;
@@ -273,24 +274,27 @@ span {
   font-size: 1.8rem;
 }
 .form-filter-list {
-  display: grid;
-  grid-template-columns: repeat(1fr 1fr 1fr);
+  display: none;
+  grid-template-columns: repeat(auto-fill, 15rem);
   justify-content: space-between;
   gap: 1em;
+  width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 .form-filter-list-item {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   width: 15rem;
   font-family: "Lato";
   font-size: 1.8rem;
-}
-.form-filter-list-button {
+  color: #ffffff;
   border: none;
-  background-color: transparent;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
 }
 
 .recipes {
