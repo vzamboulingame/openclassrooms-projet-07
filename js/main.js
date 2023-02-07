@@ -27,6 +27,7 @@ function renderRecipeCards(array) {
 // Function to render filter tag list
 function renderFilterTagList(filterListId, filterTagArray) {
   const filterList = document.getElementById(filterListId);
+  filterList.innerHTML = "";
 
   filterTagArray.forEach((tag) => {
     const filterListItemModel = filterListItemFactory(tag);

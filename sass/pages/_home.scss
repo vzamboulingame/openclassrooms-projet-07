@@ -26,10 +26,13 @@ span {
 }
 
 .main {
+    position: relative;
     padding: 2em 0;
 }
 
 .form {
+    position: absolute;
+    z-index: 10;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -131,6 +134,7 @@ span {
             justify-content: space-between;
             gap: 1em;
             width: 100%;
+            margin-top: 1em;
             overflow: hidden;
             text-overflow: ellipsis;
 
@@ -162,6 +166,7 @@ span {
     grid-template-columns: repeat(auto-fill, 38rem);
     justify-content: space-between;
     gap: 3em;
+    margin-top: 13em;
 
     &-card {
         display: flex;
