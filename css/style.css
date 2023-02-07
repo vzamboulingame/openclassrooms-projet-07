@@ -304,6 +304,17 @@ span {
 .form-filter-list-item:hover {
   color: black;
 }
+.form-filter-tag {
+  display: flex;
+  flex-direction: row;
+  width: 10.7rem;
+  height: 3.7rem;
+  font-family: "Lato";
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: #ffffff;
+  border-radius: 0.5rem;
+}
 
 .recipes {
   display: grid;
