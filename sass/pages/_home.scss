@@ -147,6 +147,11 @@ span {
                 overflow: hidden;
                 text-overflow: ellipsis;
                 cursor: pointer;
+                transition: $transition-time;
+
+                &:hover {
+                    color: black;
+                }
             }
         }
     }
