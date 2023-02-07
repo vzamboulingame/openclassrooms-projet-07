@@ -48,6 +48,9 @@ function addFormFilterEventListeners() {
       formFilterContainer.querySelector(".form-filter-input");
     const formFilterList =
       formFilterContainer.querySelector(".form-filter-list");
+    const formFilterChevron = formFilterContainer.querySelector(
+      ".form-filter-chevron"
+    );
 
     console.log(formFilterContainer.id);
     console.log(formFilterInput.id);
@@ -55,12 +58,14 @@ function addFormFilterEventListeners() {
 
     formFilterInput.addEventListener("focus", () => {
       formFilterContainer.classList.add("form-filter-dropdown");
+      formFilterChevron.classList.replace("fa-chevron-down", "fa-chevron-up");
       formFilterList.style.display = "grid";
       formFilterList.setAttribute("aria-hidden", "false");
     });
 
     formFilterInput.addEventListener("blur", () => {
       formFilterContainer.classList.remove("form-filter-dropdown");
+      formFilterChevron.classList.replace("fa-chevron-up", "fa-chevron-down");
       formFilterList.style.display = "none";
       formFilterList.setAttribute("aria-hidden", "true");
     });
