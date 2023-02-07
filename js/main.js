@@ -7,11 +7,11 @@ import {
 import { recipeCardFactory } from "./factories/recipeCardFactory.js";
 import { filterListItemFactory } from "./factories/filterListItemFactory.js";
 
-const filteredRecipesArray = recipesArray;
+var filteredRecipesArray = recipesArray;
 
-const ingredientsArray = getIngredientsArray(filteredRecipesArray);
-const appliancesArray = getAppliancesArray(filteredRecipesArray);
-const ustensilsArray = getUstensilsArray(filteredRecipesArray);
+var ingredientsArray = getIngredientsArray(filteredRecipesArray);
+var appliancesArray = getAppliancesArray(filteredRecipesArray);
+var ustensilsArray = getUstensilsArray(filteredRecipesArray);
 
 // Function to render recipe cards list
 function renderRecipeCards(array) {
@@ -25,7 +25,7 @@ function renderRecipeCards(array) {
 }
 
 // Function to render filter tag list
-function renderFilterTagList(filterListId, filterTagArray) {
+function renderFilterListItems(filterListId, filterTagArray) {
   const filterList = document.getElementById(filterListId);
   filterList.innerHTML = "";
 
@@ -38,10 +38,14 @@ function renderFilterTagList(filterListId, filterTagArray) {
 }
 
 // Function to add event listeners to form filter elements
-function addFormFilterEventListeners() {
+async function addFormFilterListeners() {
   const formFilterContainers = document.querySelectorAll(
     ".form-filter-container"
   );
+
+  await renderFilterListItems("ingredientsList", ingredientsArray);
+  await renderFilterListItems("appliancesList", appliancesArray);
+  await renderFilterListItems("ustensilsList", ustensilsArray);
 
   formFilterContainers.forEach((element) => {
     const formFilterContainer = element;
@@ -71,8 +75,4 @@ function addFormFilterEventListeners() {
 
 renderRecipeCards(filteredRecipesArray);
 
-renderFilterTagList("ingredientsList", ingredientsArray);
-renderFilterTagList("appliancesList", appliancesArray);
-renderFilterTagList("ustensilsList", ustensilsArray);
-
-addFormFilterEventListeners();
+addFormFilterListeners();
