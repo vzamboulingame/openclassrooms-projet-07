@@ -53,10 +53,6 @@ function addFormFilterEventListeners() {
       ".form-filter-chevron"
     );
 
-    console.log(formFilterContainer.id);
-    console.log(formFilterInput.id);
-    console.log(formFilterList.id);
-
     formFilterInput.addEventListener("focus", () => {
       formFilterContainer.classList.add("form-filter-dropdown");
       formFilterChevron.classList.replace("fa-chevron-down", "fa-chevron-up");
