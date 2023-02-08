@@ -7,11 +7,11 @@ import {
 import { recipeCardFactory } from "./factories/recipeCardFactory.js";
 import { filterListItemFactory } from "./factories/filterListItemFactory.js";
 
-var filteredRecipesArray = recipesArray;
+let filteredRecipesArray = recipesArray;
 
-var ingredientsArray = getIngredientsArray(filteredRecipesArray);
-var appliancesArray = getAppliancesArray(filteredRecipesArray);
-var ustensilsArray = getUstensilsArray(filteredRecipesArray);
+let ingredientsArray = getIngredientsArray(filteredRecipesArray);
+let appliancesArray = getAppliancesArray(filteredRecipesArray);
+let ustensilsArray = getUstensilsArray(filteredRecipesArray);
 
 // Function to render recipe cards list
 function renderRecipeCards(array) {
@@ -82,6 +82,11 @@ function addFormFilterListeners() {
     });
 
     formFilterInput.addEventListener("blur", () => {
+      closeFormFilterDropdown(element);
+    });
+
+    formFilterList.addEventListener("mousedown", (e) => {
+      console.log(e.target.textContent);
       closeFormFilterDropdown(element);
     });
   });
