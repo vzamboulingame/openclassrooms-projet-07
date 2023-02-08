@@ -141,14 +141,11 @@ h6 {
 }
 @media (prefers-reduced-motion: reduce) {
   *,
-::before,
-::after {
-    -webkit-animation-delay: -1ms !important;
-            animation-delay: -1ms !important; /* 1 */
-    -webkit-animation-duration: 1ms !important;
-            animation-duration: 1ms !important; /* 1 */
-    -webkit-animation-iteration-count: 1 !important;
-            animation-iteration-count: 1 !important; /* 1 */
+  ::before,
+  ::after {
+    animation-delay: -1ms !important; /* 1 */
+    animation-duration: 1ms !important; /* 1 */
+    animation-iteration-count: 1 !important; /* 1 */
     background-attachment: initial !important; /* 2 */
     scroll-behavior: auto !important; /* 3 */
     transition-delay: 0s !important; /* 4 */
@@ -217,6 +214,42 @@ span {
   font-size: 3rem;
   margin-right: 0.5em;
 }
+.form-tag-container {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 1em;
+  margin-top: 1em;
+  width: 100%;
+}
+.form-tag-span {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  width: 10.7rem;
+  height: 3rem;
+  border-radius: 0.5rem;
+  padding: 0.5em 1em;
+  background-color: #000000;
+  color: #ffffff;
+}
+.form-tag-text {
+  font-family: "Lato";
+  font-weight: 700;
+  font-size: 1.4rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.form-tag-icon {
+  font-size: 2rem;
+  transition: 0.2s;
+}
+.form-tag-icon:hover, .form-tag-icon:focus {
+  color: #000000;
+  cursor: pointer;
+}
 .form-filter {
   display: flex;
   flex-flow: row wrap;
@@ -266,9 +299,6 @@ span {
 .form-filter-input::-moz-placeholder {
   color: #ffffff;
 }
-.form-filter-input:-ms-input-placeholder {
-  color: #ffffff;
-}
 .form-filter-input::placeholder {
   color: #ffffff;
 }
@@ -304,29 +334,13 @@ span {
 .form-filter-list-item:hover {
   color: black;
 }
-.form-filter-tag {
-  display: flex;
-  flex-flow: row wrap;
-  gap: 1em;
-}
-.form-filter-tag-button {
-  display: flex;
-  flex-flow: row nowrap;
-  width: 10.7rem;
-  height: 3.7rem;
-  font-family: "Lato";
-  font-weight: 700;
-  font-size: 1.4rem;
-  color: #ffffff;
-  border-radius: 0.5rem;
-}
 
 .recipes {
   display: grid;
   grid-template-columns: repeat(auto-fill, 38rem);
   justify-content: space-between;
   gap: 3em;
-  margin-top: 13em;
+  margin-top: 16em;
 }
 .recipes-card {
   display: flex;

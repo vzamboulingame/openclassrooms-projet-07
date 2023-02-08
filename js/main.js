@@ -6,6 +6,7 @@ import {
 } from "./utils/getFilterArrays.js";
 import { recipeCardFactory } from "./factories/recipeCardFactory.js";
 import { filterListItemFactory } from "./factories/filterListItemFactory.js";
+import { formTagSpanFactory } from "./factories/formTagSpanFactory.js";
 
 let filteredRecipesArray = recipesArray;
 
@@ -27,15 +28,25 @@ function renderRecipeCards(array) {
 }
 
 // Function to render filter list items
-function renderFilterListItems(filterListId, filterTagArray) {
-  const filterList = document.getElementById(filterListId);
+function renderFilterListItems(id, array) {
+  const filterList = document.getElementById(id);
 
-  filterTagArray.forEach((tag) => {
+  array.forEach((tag) => {
     const filterListItemModel = filterListItemFactory(tag);
     const filterListItemDOM = filterListItemModel.getFilterListItemDOM();
 
     filterList.append(filterListItemDOM);
   });
+}
+
+// Function to render filter tag spans
+function renderFormTagSpan(tag, color) {
+  const formTagContainer = document.querySelector(".form-tag-container");
+
+  const formTagSpanModel = formTagSpanFactory(tag, color);
+  const formTagSpanDOM = formTagSpanModel.getFormTagSpanDOM();
+
+  formTagContainer.append(formTagSpanDOM);
 }
 
 // Function to display filter dropdown
@@ -71,6 +82,7 @@ function addFormFilterListeners() {
   const formFilterContainers = document.querySelectorAll(
     ".form-filter-container"
   );
+  const formTagContainer = document.querySelector(".form-tag-container");
 
   formFilterContainers.forEach((element) => {
     const formFilterContainer = element;
@@ -88,9 +100,19 @@ function addFormFilterListeners() {
     });
 
     formFilterList.addEventListener("mousedown", (e) => {
-      filterTagArray.push(e.target.textContent);
-      console.log(filterTagArray);
-      closeFormFilterDropdown(element);
+      if (e.target && e.target.classList == "form-filter-list-item") {
+        const filterTag = e.target.textContent;
+        const filterTagColor = window
+          .getComputedStyle(e.target.parentElement.parentElement)
+          .getPropertyValue("background-color");
+
+        console.log(filterTag, filterTagColor);
+
+        filterTagArray.push(filterTag);
+        renderFormTagSpan(filterTag, filterTagColor);
+
+        closeFormFilterDropdown(element);
+      }
     });
   });
 }
