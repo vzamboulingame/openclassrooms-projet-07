@@ -13,6 +13,8 @@ let ingredientsArray = getIngredientsArray(filteredRecipesArray);
 let appliancesArray = getAppliancesArray(filteredRecipesArray);
 let ustensilsArray = getUstensilsArray(filteredRecipesArray);
 
+let filterTagArray = [];
+
 // Function to render recipe cards list
 function renderRecipeCards(array) {
   const recipeCardsList = document.querySelector(".recipes");
@@ -86,7 +88,8 @@ function addFormFilterListeners() {
     });
 
     formFilterList.addEventListener("mousedown", (e) => {
-      console.log(e.target.textContent);
+      filterTagArray.push(e.target.textContent);
+      console.log(filterTagArray);
       closeFormFilterDropdown(element);
     });
   });

@@ -161,14 +161,20 @@ span {
 
         &-tag {
             display: flex;
-            flex-direction: row;
-            width: 10.7rem;
-            height: 3.7rem;
-            font-family: "Lato";
-            font-weight: 700;
-            font-size: 1.4rem;
-            color: #ffffff;
-            border-radius: $border-radius;
+            flex-flow: row wrap;
+            gap: 1em;
+
+            &-button {
+                display: flex;
+                flex-flow: row nowrap;
+                width: 10.7rem;
+                height: 3.7rem;
+                font-family: "Lato";
+                font-weight: 700;
+                font-size: 1.4rem;
+                color: #ffffff;
+                border-radius: $border-radius;
+            }
         }
     }
 }
