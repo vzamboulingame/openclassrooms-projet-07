@@ -82,7 +82,6 @@ function addFormFilterListeners() {
   const formFilterContainers = document.querySelectorAll(
     ".form-filter-container"
   );
-  const formTagContainer = document.querySelector(".form-tag-container");
 
   formFilterContainers.forEach((element) => {
     const formFilterContainer = element;
@@ -105,8 +104,6 @@ function addFormFilterListeners() {
         const filterTagColor = window
           .getComputedStyle(e.target.parentElement.parentElement)
           .getPropertyValue("background-color");
-
-        console.log(filterTag, filterTagColor);
 
         filterTagArray.push(filterTag);
         renderFormTagSpan(filterTag, filterTagColor);
