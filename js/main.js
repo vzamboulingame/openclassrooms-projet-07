@@ -24,10 +24,9 @@ function renderRecipeCards(array) {
   });
 }
 
-// Function to render filter tag list
+// Function to render filter list items
 function renderFilterListItems(filterListId, filterTagArray) {
   const filterList = document.getElementById(filterListId);
-  filterList.innerHTML = "";
 
   filterTagArray.forEach((tag) => {
     const filterListItemModel = filterListItemFactory(tag);
@@ -37,42 +36,61 @@ function renderFilterListItems(filterListId, filterTagArray) {
   });
 }
 
+// Function to display filter dropdown
+function displayFormFilterDropdown(element) {
+  const formFilterContainer = element;
+  const formFilterList = formFilterContainer.querySelector(".form-filter-list");
+  const formFilterChevron = formFilterContainer.querySelector(
+    ".form-filter-chevron"
+  );
+
+  formFilterContainer.classList.add("form-filter-dropdown");
+  formFilterChevron.classList.replace("fa-chevron-down", "fa-chevron-up");
+  formFilterList.style.display = "grid";
+  formFilterList.setAttribute("aria-hidden", "false");
+}
+
+// Function to close filter dropdown
+function closeFormFilterDropdown(element) {
+  const formFilterContainer = element;
+  const formFilterList = formFilterContainer.querySelector(".form-filter-list");
+  const formFilterChevron = formFilterContainer.querySelector(
+    ".form-filter-chevron"
+  );
+
+  formFilterContainer.classList.remove("form-filter-dropdown");
+  formFilterChevron.classList.replace("fa-chevron-up", "fa-chevron-down");
+  formFilterList.style.display = "none";
+  formFilterList.setAttribute("aria-hidden", "true");
+}
+
 // Function to add event listeners to form filter elements
-async function addFormFilterListeners() {
+function addFormFilterListeners() {
   const formFilterContainers = document.querySelectorAll(
     ".form-filter-container"
   );
 
-  await renderFilterListItems("ingredientsList", ingredientsArray);
-  await renderFilterListItems("appliancesList", appliancesArray);
-  await renderFilterListItems("ustensilsList", ustensilsArray);
-
   formFilterContainers.forEach((element) => {
     const formFilterContainer = element;
-    const formFilterInput =
-      formFilterContainer.querySelector(".form-filter-input");
     const formFilterList =
       formFilterContainer.querySelector(".form-filter-list");
-    const formFilterChevron = formFilterContainer.querySelector(
-      ".form-filter-chevron"
-    );
+    const formFilterInput =
+      formFilterContainer.querySelector(".form-filter-input");
 
     formFilterInput.addEventListener("focus", () => {
-      formFilterContainer.classList.add("form-filter-dropdown");
-      formFilterChevron.classList.replace("fa-chevron-down", "fa-chevron-up");
-      formFilterList.style.display = "grid";
-      formFilterList.setAttribute("aria-hidden", "false");
+      displayFormFilterDropdown(element);
     });
 
     formFilterInput.addEventListener("blur", () => {
-      formFilterContainer.classList.remove("form-filter-dropdown");
-      formFilterChevron.classList.replace("fa-chevron-up", "fa-chevron-down");
-      formFilterList.style.display = "none";
-      formFilterList.setAttribute("aria-hidden", "true");
+      closeFormFilterDropdown(element);
     });
   });
 }
 
 renderRecipeCards(filteredRecipesArray);
+
+renderFilterListItems("ingredientsList", ingredientsArray);
+renderFilterListItems("appliancesList", appliancesArray);
+renderFilterListItems("ustensilsList", ustensilsArray);
 
 addFormFilterListeners();
