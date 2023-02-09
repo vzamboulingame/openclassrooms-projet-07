@@ -37,6 +37,8 @@ function renderRecipeCards(array) {
 function renderFilterListItems(id, array) {
   const filterList = document.getElementById(id);
 
+  filterList.innerHTML = "";
+
   array.forEach((tag) => {
     const filterListItemModel = filterListItemFactory(tag);
     const filterListItemDOM = filterListItemModel.getFilterListItemDOM();
@@ -102,12 +104,20 @@ function addFormFilterListeners() {
 
     formFilterInput.addEventListener("blur", () => {
       closeFormFilterDropdown(element);
+      formFilterInput.value = "";
     });
 
     formFilterInput.addEventListener("input", () => {
-      const filteredIngredients = ingredientsArray.filter((ingredient) =>
-        ingredient.toLowerCase().includes(this.value.toLowerCase())
+      const listId = formFilterList.id;
+      const { array: listArray } = listArrayMapping.find(
+        (item) => item.list == listId
       );
+
+      const filteredListArray = listArray.filter((item) =>
+        item.toLowerCase().includes(formFilterInput.value.toLowerCase())
+      );
+
+      renderFilterListItems(listId, filteredListArray);
     });
 
     formFilterList.addEventListener("mousedown", (e) => {
@@ -119,6 +129,8 @@ function addFormFilterListeners() {
 
         filterTagArray.push(filterTag);
         renderFormTagSpan(filterTag, filterTagColor);
+
+        formFilterInput.value = "";
 
         closeFormFilterDropdown(element);
       }
