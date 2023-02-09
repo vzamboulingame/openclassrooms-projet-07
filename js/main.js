@@ -114,10 +114,23 @@ function addFormFilterListeners() {
   });
 }
 
-renderRecipeCards(filteredRecipesArray);
+// Function to refresh array data
+function refreshArrayData(data) {
+  filteredRecipesArray = data;
 
-renderFilterListItems("ingredientsList", ingredientsArray);
-renderFilterListItems("appliancesList", appliancesArray);
-renderFilterListItems("ustensilsList", ustensilsArray);
+  ingredientsArray = getIngredientsArray(filteredRecipesArray);
+  appliancesArray = getAppliancesArray(filteredRecipesArray);
+  ustensilsArray = getUstensilsArray(filteredRecipesArray);
+}
 
+// Function to render all elements
+function renderAllElements() {
+  renderRecipeCards(filteredRecipesArray);
+
+  renderFilterListItems("ingredientsList", ingredientsArray);
+  renderFilterListItems("appliancesList", appliancesArray);
+  renderFilterListItems("ustensilsList", ustensilsArray);
+}
+
+renderAllElements();
 addFormFilterListeners();
