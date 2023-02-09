@@ -16,6 +16,12 @@ let ustensilsArray = getUstensilsArray(filteredRecipesArray);
 
 let filterTagArray = [];
 
+const listArrayMapping = [
+  { list: "ingredientsList", array: ingredientsArray },
+  { list: "appliancesList", array: appliancesArray },
+  { list: "ustensilsList", array: ustensilsArray },
+];
+
 // Function to render recipe cards list
 function renderRecipeCards(array) {
   const recipeCardsList = document.querySelector(".recipes");
@@ -98,6 +104,12 @@ function addFormFilterListeners() {
       closeFormFilterDropdown(element);
     });
 
+    formFilterInput.addEventListener("input", () => {
+      const filteredIngredients = ingredientsArray.filter((ingredient) =>
+        ingredient.toLowerCase().includes(this.value.toLowerCase())
+      );
+    });
+
     formFilterList.addEventListener("mousedown", (e) => {
       if (e.target && e.target.classList == "form-filter-list-item") {
         const filterTag = e.target.textContent;
@@ -127,10 +139,11 @@ function refreshArrayData(data) {
 function renderAllElements() {
   renderRecipeCards(filteredRecipesArray);
 
-  renderFilterListItems("ingredientsList", ingredientsArray);
-  renderFilterListItems("appliancesList", appliancesArray);
-  renderFilterListItems("ustensilsList", ustensilsArray);
+  listArrayMapping.forEach((element) => {
+    renderFilterListItems(element.list, element.array);
+  });
 }
 
 renderAllElements();
+
 addFormFilterListeners();
