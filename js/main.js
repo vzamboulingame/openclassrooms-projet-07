@@ -12,28 +12,31 @@ import { formTagSpanFactory } from "./factories/formTagSpanFactory.js";
 
 /* VARIABLES */
 
+const formFilterContainers = document.querySelectorAll(
+  ".form-filter-container"
+);
+
 let filteredRecipesArray = recipesArray;
 
 let ingredientsArray = getIngredientsArray(filteredRecipesArray);
 let appliancesArray = getAppliancesArray(filteredRecipesArray);
 let ustensilsArray = getUstensilsArray(filteredRecipesArray);
 
-let filterTagArray = [];
-
-const formFilterContainers = document.querySelectorAll(
-  ".form-filter-container"
-);
-const listArrayMapping = [
+let listArrayMapping = [
   { list: "ingredientsList", array: ingredientsArray },
   { list: "appliancesList", array: appliancesArray },
   { list: "ustensilsList", array: ustensilsArray },
 ];
+
+let filterTagArray = [];
 
 /* FUNCTIONS */
 
 // Function to render recipe cards list
 function renderRecipeCards(array) {
   const recipeCardsList = document.querySelector(".recipes");
+
+  recipeCardsList.innerHTML = "";
 
   array.forEach((recipe) => {
     const recipeCardModel = recipeCardFactory(recipe);
@@ -95,18 +98,40 @@ function closeFormFilterDropdown(element) {
 }
 
 // Function to refresh all filter arrays data
-function refreshFilterArrays(array) {
-  ingredientsArray = getIngredientsArray(array);
-  appliancesArray = getAppliancesArray(array);
-  ustensilsArray = getUstensilsArray(array);
+async function refreshFilterArrays() {
+  ingredientsArray = await getIngredientsArray(filteredRecipesArray);
+  appliancesArray = await getAppliancesArray(filteredRecipesArray);
+  ustensilsArray = await getUstensilsArray(filteredRecipesArray);
+
+  listArrayMapping = [
+    { list: "ingredientsList", array: ingredientsArray },
+    { list: "appliancesList", array: appliancesArray },
+    { list: "ustensilsList", array: ustensilsArray },
+  ];
 }
 
 // Function to render all elements
-function renderAllElements() {
+async function renderAllElements() {
+  await refreshFilterArrays();
+
   renderRecipeCards(filteredRecipesArray);
 
   listArrayMapping.forEach((element) => {
     renderFilterListItems(element.list, element.array);
+  });
+}
+
+// Function to filter recipes with tags from filterTagArray
+function filterRecipesFromTags(recipeArray, tagArray) {
+  return recipeArray.filter((recipe) => {
+    return tagArray.some((tag) => {
+      return Object.values(recipe).some((value) => {
+        return (
+          typeof value === "string" &&
+          value.toLowerCase().includes(tag.toLowerCase())
+        );
+      });
+    });
   });
 }
 
@@ -147,11 +172,16 @@ formFilterContainers.forEach((element) => {
         .getPropertyValue("background-color");
 
       filterTagArray.push(filterTag);
-      renderFormTagSpan(filterTag, filterTagColor);
+      filteredRecipesArray = filterRecipesFromTags(
+        filteredRecipesArray,
+        filterTagArray
+      );
 
+      renderFormTagSpan(filterTag, filterTagColor);
+      closeFormFilterDropdown(element);
       formFilterInput.value = "";
 
-      closeFormFilterDropdown(element);
+      renderAllElements();
     }
   });
 });
