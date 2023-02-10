@@ -91,13 +91,11 @@ function closeFormFilterDropdown(element) {
   formFilterList.setAttribute("aria-hidden", "true");
 }
 
-// Function to refresh array data
-function refreshArrayData(data) {
-  filteredRecipesArray = data;
-
-  ingredientsArray = getIngredientsArray(filteredRecipesArray);
-  appliancesArray = getAppliancesArray(filteredRecipesArray);
-  ustensilsArray = getUstensilsArray(filteredRecipesArray);
+// Function to refresh all filter arrays data
+function refreshFilterArrays(array) {
+  ingredientsArray = getIngredientsArray(array);
+  appliancesArray = getAppliancesArray(array);
+  ustensilsArray = getUstensilsArray(array);
 }
 
 // Function to render all elements
