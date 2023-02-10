@@ -1,3 +1,5 @@
+/* IMPORTS */
+
 import { recipesArray } from "./data/recipes.js";
 import {
   getIngredientsArray,
@@ -7,6 +9,8 @@ import {
 import { recipeCardFactory } from "./factories/recipeCardFactory.js";
 import { filterListItemFactory } from "./factories/filterListItemFactory.js";
 import { formTagSpanFactory } from "./factories/formTagSpanFactory.js";
+
+/* VARIABLES */
 
 let filteredRecipesArray = recipesArray;
 
@@ -21,6 +25,8 @@ const listArrayMapping = [
   { list: "appliancesList", array: appliancesArray },
   { list: "ustensilsList", array: ustensilsArray },
 ];
+
+/* FUNCTIONS */
 
 // Function to render recipe cards list
 function renderRecipeCards(array) {
@@ -85,6 +91,24 @@ function closeFormFilterDropdown(element) {
   formFilterList.setAttribute("aria-hidden", "true");
 }
 
+// Function to refresh array data
+function refreshArrayData(data) {
+  filteredRecipesArray = data;
+
+  ingredientsArray = getIngredientsArray(filteredRecipesArray);
+  appliancesArray = getAppliancesArray(filteredRecipesArray);
+  ustensilsArray = getUstensilsArray(filteredRecipesArray);
+}
+
+// Function to render all elements
+function renderAllElements() {
+  renderRecipeCards(filteredRecipesArray);
+
+  listArrayMapping.forEach((element) => {
+    renderFilterListItems(element.list, element.array);
+  });
+}
+
 // Function to add event listeners to form filter elements
 function addFormFilterListeners() {
   const formFilterContainers = document.querySelectorAll(
@@ -138,23 +162,7 @@ function addFormFilterListeners() {
   });
 }
 
-// Function to refresh array data
-function refreshArrayData(data) {
-  filteredRecipesArray = data;
-
-  ingredientsArray = getIngredientsArray(filteredRecipesArray);
-  appliancesArray = getAppliancesArray(filteredRecipesArray);
-  ustensilsArray = getUstensilsArray(filteredRecipesArray);
-}
-
-// Function to render all elements
-function renderAllElements() {
-  renderRecipeCards(filteredRecipesArray);
-
-  listArrayMapping.forEach((element) => {
-    renderFilterListItems(element.list, element.array);
-  });
-}
+/* EXECUTION */
 
 renderAllElements();
 
