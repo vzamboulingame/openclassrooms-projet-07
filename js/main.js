@@ -20,6 +20,9 @@ let ustensilsArray = getUstensilsArray(filteredRecipesArray);
 
 let filterTagArray = [];
 
+const formFilterContainers = document.querySelectorAll(
+  ".form-filter-container"
+);
 const listArrayMapping = [
   { list: "ingredientsList", array: ingredientsArray },
   { list: "appliancesList", array: appliancesArray },
@@ -107,61 +110,52 @@ function renderAllElements() {
   });
 }
 
-// Function to add event listeners to form filter elements
-function addFormFilterListeners() {
-  const formFilterContainers = document.querySelectorAll(
-    ".form-filter-container"
+/* EVENT LISTENERS */
+formFilterContainers.forEach((element) => {
+  const formFilterContainer = element;
+  const formFilterList = formFilterContainer.querySelector(".form-filter-list");
+  const formFilterInput =
+    formFilterContainer.querySelector(".form-filter-input");
+  const formFilterListId = formFilterList.id;
+  const { array: formFilterListArray } = listArrayMapping.find(
+    (item) => item.list == formFilterListId
   );
 
-  formFilterContainers.forEach((element) => {
-    const formFilterContainer = element;
-    const formFilterList =
-      formFilterContainer.querySelector(".form-filter-list");
-    const formFilterInput =
-      formFilterContainer.querySelector(".form-filter-input");
-    const formFilterListId = formFilterList.id;
-    const { array: formFilterListArray } = listArrayMapping.find(
-      (item) => item.list == formFilterListId
+  formFilterInput.addEventListener("focus", () => {
+    displayFormFilterDropdown(element);
+    renderFilterListItems(formFilterListId, formFilterListArray);
+  });
+
+  formFilterInput.addEventListener("blur", () => {
+    closeFormFilterDropdown(element);
+    formFilterInput.value = "";
+  });
+
+  formFilterInput.addEventListener("input", () => {
+    const filteredListArray = formFilterListArray.filter((item) =>
+      item.toLowerCase().includes(formFilterInput.value.toLowerCase())
     );
 
-    formFilterInput.addEventListener("focus", () => {
-      displayFormFilterDropdown(element);
-      renderFilterListItems(formFilterListId, formFilterListArray);
-    });
-
-    formFilterInput.addEventListener("blur", () => {
-      closeFormFilterDropdown(element);
-      formFilterInput.value = "";
-    });
-
-    formFilterInput.addEventListener("input", () => {
-      const filteredListArray = formFilterListArray.filter((item) =>
-        item.toLowerCase().includes(formFilterInput.value.toLowerCase())
-      );
-
-      renderFilterListItems(formFilterListId, filteredListArray);
-    });
-
-    formFilterList.addEventListener("mousedown", (e) => {
-      if (e.target && e.target.classList == "form-filter-list-item") {
-        const filterTag = e.target.textContent;
-        const filterTagColor = window
-          .getComputedStyle(e.target.parentElement.parentElement)
-          .getPropertyValue("background-color");
-
-        filterTagArray.push(filterTag);
-        renderFormTagSpan(filterTag, filterTagColor);
-
-        formFilterInput.value = "";
-
-        closeFormFilterDropdown(element);
-      }
-    });
+    renderFilterListItems(formFilterListId, filteredListArray);
   });
-}
+
+  formFilterList.addEventListener("mousedown", (e) => {
+    if (e.target && e.target.classList == "form-filter-list-item") {
+      const filterTag = e.target.textContent;
+      const filterTagColor = window
+        .getComputedStyle(e.target.parentElement.parentElement)
+        .getPropertyValue("background-color");
+
+      filterTagArray.push(filterTag);
+      renderFormTagSpan(filterTag, filterTagColor);
+
+      formFilterInput.value = "";
+
+      closeFormFilterDropdown(element);
+    }
+  });
+});
 
 /* EXECUTION */
 
 renderAllElements();
-
-addFormFilterListeners();
