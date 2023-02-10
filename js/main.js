@@ -97,9 +97,14 @@ function addFormFilterListeners() {
       formFilterContainer.querySelector(".form-filter-list");
     const formFilterInput =
       formFilterContainer.querySelector(".form-filter-input");
+    const formFilterListId = formFilterList.id;
+    const { array: formFilterListArray } = listArrayMapping.find(
+      (item) => item.list == formFilterListId
+    );
 
     formFilterInput.addEventListener("focus", () => {
       displayFormFilterDropdown(element);
+      renderFilterListItems(formFilterListId, formFilterListArray);
     });
 
     formFilterInput.addEventListener("blur", () => {
@@ -108,16 +113,11 @@ function addFormFilterListeners() {
     });
 
     formFilterInput.addEventListener("input", () => {
-      const listId = formFilterList.id;
-      const { array: listArray } = listArrayMapping.find(
-        (item) => item.list == listId
-      );
-
-      const filteredListArray = listArray.filter((item) =>
+      const filteredListArray = formFilterListArray.filter((item) =>
         item.toLowerCase().includes(formFilterInput.value.toLowerCase())
       );
 
-      renderFilterListItems(listId, filteredListArray);
+      renderFilterListItems(formFilterListId, filteredListArray);
     });
 
     formFilterList.addEventListener("mousedown", (e) => {
