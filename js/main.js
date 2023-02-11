@@ -139,9 +139,6 @@ formFilterContainers.forEach((element) => {
   const formFilterInput =
     formFilterContainer.querySelector(".form-filter-input");
   const formFilterListId = formFilterList.id;
-  const { array: formFilterListArray } = listArrayMapping.find(
-    (item) => item.list == formFilterListId
-  );
 
   formFilterInput.addEventListener("focus", () => {
     renderAllElements();
@@ -154,6 +151,10 @@ formFilterContainers.forEach((element) => {
   });
 
   formFilterInput.addEventListener("input", () => {
+    refreshFilterArrays();
+    const { array: formFilterListArray } = listArrayMapping.find(
+      (item) => item.list == formFilterListId
+    );
     const filteredListArray = formFilterListArray.filter((item) =>
       item.toLowerCase().includes(formFilterInput.value.toLowerCase())
     );
