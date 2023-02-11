@@ -46,7 +46,7 @@ function renderRecipeCards(array) {
 }
 
 // Function to render filter list items
-function renderFilterListItems(id, array) {
+async function renderFilterListItems(id, array) {
   const filterList = document.getElementById(id);
 
   filterList.innerHTML = "";
@@ -126,10 +126,7 @@ function filterRecipesFromTags(recipeArray, tagArray) {
   return recipeArray.filter((recipe) => {
     return tagArray.some((tag) => {
       return Object.values(recipe).some((value) => {
-        return (
-          typeof value === "string" &&
-          value.toLowerCase().includes(tag.toLowerCase())
-        );
+        return typeof value === "string" && value.toLowerCase().includes(tag);
       });
     });
   });
@@ -147,8 +144,8 @@ formFilterContainers.forEach((element) => {
   );
 
   formFilterInput.addEventListener("focus", () => {
+    renderAllElements();
     displayFormFilterDropdown(element);
-    renderFilterListItems(formFilterListId, formFilterListArray);
   });
 
   formFilterInput.addEventListener("blur", () => {
