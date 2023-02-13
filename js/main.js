@@ -68,6 +68,19 @@ function renderFormTagSpan(tag, color) {
   const formTagSpanDOM = formTagSpanModel.getFormTagSpanDOM();
 
   formTagContainer.append(formTagSpanDOM);
+
+  const formTagTextContent =
+    formTagSpanDOM.querySelector(".form-tag-text").textContent;
+  const formTagCloseBtn = formTagSpanDOM.querySelector(".form-tag-icon");
+
+  formTagCloseBtn.addEventListener("click", () => {
+    filterTagArray = filterTagArray.filter((tag) => tag != formTagTextContent);
+    filteredRecipesArray = searchRecipes(filterTagArray, recipesArray);
+
+    formTagSpanDOM.remove();
+
+    renderAllElements();
+  });
 }
 
 // Function to display filter dropdown
@@ -123,6 +136,7 @@ async function renderAllElements() {
 }
 
 /* EVENT LISTENERS */
+
 formFilterContainers.forEach((element) => {
   const formFilterContainer = element;
   const formFilterList = formFilterContainer.querySelector(".form-filter-list");
@@ -163,9 +177,8 @@ formFilterContainers.forEach((element) => {
         filterTagArray.push(filterTag);
         filteredRecipesArray = searchRecipes(filterTagArray, recipesArray);
 
-        console.log(filteredRecipesArray);
-
         renderFormTagSpan(filterTag, filterTagColor);
+
         closeFormFilterDropdown(element);
         formFilterInput.value = "";
 
