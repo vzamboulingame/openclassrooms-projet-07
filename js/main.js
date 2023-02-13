@@ -159,16 +159,21 @@ formFilterContainers.forEach((element) => {
         .getComputedStyle(e.target.parentElement.parentElement)
         .getPropertyValue("background-color");
 
-      filterTagArray.push(filterTag);
-      filteredRecipesArray = searchRecipes(filterTag, filteredRecipesArray);
+      if (!filterTagArray.includes(filterTag)) {
+        filterTagArray.push(filterTag);
+        filteredRecipesArray = searchRecipes(filterTag, filteredRecipesArray);
 
-      console.log(filteredRecipesArray);
+        console.log(filteredRecipesArray);
 
-      renderFormTagSpan(filterTag, filterTagColor);
+        renderFormTagSpan(filterTag, filterTagColor);
+        closeFormFilterDropdown(element);
+        formFilterInput.value = "";
+
+        renderAllElements();
+      }
+
       closeFormFilterDropdown(element);
       formFilterInput.value = "";
-
-      renderAllElements();
     }
   });
 });
