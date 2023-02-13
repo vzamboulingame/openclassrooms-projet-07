@@ -161,7 +161,7 @@ formFilterContainers.forEach((element) => {
 
       if (!filterTagArray.includes(filterTag)) {
         filterTagArray.push(filterTag);
-        filteredRecipesArray = searchRecipes(filterTag, filteredRecipesArray);
+        filteredRecipesArray = searchRecipes(filterTagArray, recipesArray);
 
         console.log(filteredRecipesArray);
 
