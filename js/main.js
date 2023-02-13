@@ -6,6 +6,7 @@ import {
   getAppliancesArray,
   getUstensilsArray,
 } from "./utils/getFilterArrays.js";
+import { searchRecipes } from "./utils/searchRecipes.js";
 import { recipeCardFactory } from "./factories/recipeCardFactory.js";
 import { filterListItemFactory } from "./factories/filterListItemFactory.js";
 import { formTagSpanFactory } from "./factories/formTagSpanFactory.js";
@@ -121,17 +122,6 @@ async function renderAllElements() {
   });
 }
 
-// Function to filter recipes with tags from filterTagArray
-function filterRecipesFromTags(recipeArray, tagArray) {
-  return recipeArray.filter((recipe) => {
-    return tagArray.some((tag) => {
-      return Object.values(recipe).some((value) => {
-        return typeof value === "string" && value.toLowerCase().includes(tag);
-      });
-    });
-  });
-}
-
 /* EVENT LISTENERS */
 formFilterContainers.forEach((element) => {
   const formFilterContainer = element;
@@ -170,10 +160,9 @@ formFilterContainers.forEach((element) => {
         .getPropertyValue("background-color");
 
       filterTagArray.push(filterTag);
-      filteredRecipesArray = filterRecipesFromTags(
-        filteredRecipesArray,
-        filterTagArray
-      );
+      filteredRecipesArray = searchRecipes(filterTag, filteredRecipesArray);
+
+      console.log(filteredRecipesArray);
 
       renderFormTagSpan(filterTag, filterTagColor);
       closeFormFilterDropdown(element);
