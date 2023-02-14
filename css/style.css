@@ -298,9 +298,11 @@ span {
 }
 .form-filter-input::-moz-placeholder {
   color: #ffffff;
+  opacity: 1;
 }
 .form-filter-input::placeholder {
   color: #ffffff;
+  opacity: 1;
 }
 .form-filter-chevron {
   color: #ffffff;
