@@ -1,5 +1,16 @@
+/**
+ * Takes a tag as parameter and returns an object with a function that will generate
+ * the DOM element for the filter list element
+ *
+ * @param {string} tag - The tag that will be displayed in the filter list element
+ * @returns {object} - An object with a function that returns a DOM element.
+ */
 export function filterListItemFactory(tag) {
-  // Function that will generate the DOM element for the filter list option
+  /**
+   * Generates the DOM element for the filter list element
+   *
+   * @returns {object} - An object with filter list item DOM element.
+   */
   function getFilterListItemDOM() {
     const filterListItem = document.createElement("li");
 
