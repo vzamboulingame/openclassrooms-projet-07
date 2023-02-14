@@ -13,6 +13,7 @@ import { formTagSpanFactory } from "./factories/formTagSpanFactory.js";
 
 /* VARIABLES */
 
+const formSearchInput = document.querySelector(".form-search-input");
 const formFilterContainers = document.querySelectorAll(
   ".form-filter-container"
 );
@@ -136,6 +137,16 @@ async function renderAllElements() {
 }
 
 /* EVENT LISTENERS */
+
+// Event listeners for the main search input
+
+formSearchInput.addEventListener("input", () => {
+  if (formSearchInput.value.length >= 3) {
+    console.log(formSearchInput.value);
+  }
+});
+
+// Event listeners for each form filter container child elements
 
 formFilterContainers.forEach((element) => {
   const formFilterContainer = element;
