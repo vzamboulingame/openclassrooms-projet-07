@@ -21,15 +21,15 @@
 
   <main class="main">
     <form class="form">
-      <fieldset class="form-search">
+      <div class="form-search">
         <input class="form-search-input" type="text" minlength="3" maxlength="30" pattern="(?!^ +$)^.+$"
           placeholder="Rechercher une recette" onfocus="this.placeholder=''"
           onblur="this.placeholder='Rechercher une recette'"
           aria-label="Zone de saisie pour recherche de recettes par mots-clés">
         <i class="form-search-icon fa-solid fa-magnifying-glass"></i>
-      </fieldset>
-      <fieldset class="form-tag-container"></fieldset>
-      <fieldset class="form-filter">
+      </div>
+      <div class="form-tag-container"></div>
+      <div class="form-filter">
         <div class="form-filter-container form-filter-blue" id="ingredientsFilter">
           <span class="form-filter-span">
             <input class="form-filter-input" id="ingredientsInput" type="text" placeholder="Ingrédients"
@@ -57,7 +57,7 @@
           </span>
           <ul class="form-filter-list" id="ustensilsList" aria-hidden="true"></ul>
         </div>
-      </fieldset>
+      </div>
     </form>
 
     <ul class="recipes"></ul>
