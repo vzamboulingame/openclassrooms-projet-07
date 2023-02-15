@@ -160,7 +160,8 @@ h6 {
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
-  padding: 1em 0;
+  margin-top: 1em;
+  max-width: 100%;
 }
 .header-logo {
   width: 26.8rem;
@@ -171,17 +172,28 @@ h6 {
 .header-message {
   opacity: 0;
   display: none;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   width: 100%;
-  margin: 1em 0 0 0;
-  padding: 0.5em 0;
+  max-width: 100%;
+  margin-top: 1em;
+  padding: 0.5em 1em;
   border-radius: 0.5rem;
   background-color: lightblue;
   color: darkslategray;
+  transition: 0.2s;
+}
+.header-message-text {
   font-family: "Lato";
   font-size: 2rem;
+}
+.header-message-icon {
+  font-size: 3rem;
   transition: 0.2s;
+}
+.header-message-icon:hover, .header-message-icon:focus {
+  color: #ffffff;
+  cursor: pointer;
 }
 
 fieldset,

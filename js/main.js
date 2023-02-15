@@ -17,6 +17,7 @@ import { formTagSpanFactory } from "./factories/formTagSpanFactory.js";
 
 /* VARIABLES */
 
+const headerMsgIcon = document.querySelector(".header-message-icon");
 const formSearchInput = document.querySelector(".form-search-input");
 const formFilterContainers = document.querySelectorAll(
   ".form-filter-container"
@@ -77,9 +78,10 @@ async function renderFilterListItems(id, array) {
 }
 
 /**
- * Takes a tag and color as parameters, then renders the DOM element for the form tag span element,
- * appends it to the form tag container and adds an event listener to the tag span element's
- * close button that removes the tag from the filter tag array and re-renders the recipe elements
+ * Takes a tag and a color as parameters, then renders the DOM element for the form tag span element,
+ * appends it to the form tag container, resets / displays the header message with the recipes count
+ * and adds an event listener to the tag span element's close button that removes the tag from
+ * the filter tag array and re-renders the recipe card and filter list item elements
  *
  * @param {string} tag - The tag that will be rendered
  * @param {string} color - The color of the tag
@@ -92,6 +94,10 @@ function renderFormTagSpan(tag, color) {
 
   formTagContainer.append(formTagSpanDOM);
 
+  const recipesCount = filteredRecipesArray.length;
+  closeHeaderMsg();
+  displayHeaderMsg(`${recipesCount} recette(s) trouvée(s)`);
+
   const formTagTextContent =
     formTagSpanDOM.querySelector(".form-tag-text").textContent;
   const formTagCloseBtn = formTagSpanDOM.querySelector(".form-tag-icon");
@@ -103,6 +109,10 @@ function renderFormTagSpan(tag, color) {
     formTagSpanDOM.remove();
 
     renderAllElements();
+
+    const recipesCount = filteredRecipesArray.length;
+    closeHeaderMsg();
+    displayHeaderMsg(`${recipesCount} recette(s) trouvée(s)`);
   });
 }
 
@@ -175,6 +185,9 @@ async function renderAllElements() {
 }
 
 /* EVENT LISTENERS */
+
+// Event listener for header message close icon
+headerMsgIcon.addEventListener("click", closeHeaderMsg);
 
 // Event listeners for the main search input
 formSearchInput.addEventListener("input", () => {
