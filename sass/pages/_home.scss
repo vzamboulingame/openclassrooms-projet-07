@@ -6,14 +6,31 @@
 
 .header {
     display: flex;
+    flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
-    padding: 1em;
+    padding: 1em 0;
 
     &-logo {
         width: 26.8rem;
         height: 9.3rem;
         object-fit: contain;
+    }
+
+    &-message {
+        opacity: 0;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin: 1em 0 0 0;
+        padding: 0.5em 0;
+        border-radius: $border-radius;
+        background-color: lightblue;
+        color: darkslategray;
+        font-family: "Lato";
+        font-size: 2rem;
+        transition: $transition-time;
     }
 }
 
@@ -27,7 +44,7 @@ span {
 
 .main {
     position: relative;
-    padding: 2em 0;
+    padding: 1em 0;
 }
 
 .form {
