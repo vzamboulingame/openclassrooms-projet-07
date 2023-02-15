@@ -6,6 +6,10 @@ import {
   getAppliancesArray,
   getUstensilsArray,
 } from "./utils/getFilterArrays.js";
+import {
+  displayHeaderMsg,
+  closeHeaderMsg,
+} from "./utils/displayCloseHeaderMsg.js";
 import { searchRecipes } from "./utils/searchRecipes.js";
 import { recipeCardFactory } from "./factories/recipeCardFactory.js";
 import { filterListItemFactory } from "./factories/filterListItemFactory.js";
