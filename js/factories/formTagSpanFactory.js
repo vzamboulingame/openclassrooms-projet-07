@@ -1,5 +1,17 @@
+/**
+ * Factory that takes a tag and a color as parameters and returns a function
+ * that will generate the DOM element for the form tag span
+ *
+ * @param {string} tag - The tag that will be displayed in the span
+ * @param {string} color - The color of the form tag span
+ * @returns {object} - An object with a function that returns a DOM element
+ */
 export function formTagSpanFactory(tag, color) {
-  // Function that will generate the DOM element for the form tag span
+  /**
+   * Generates the DOM element for the form tag span and returns it as an object
+   *
+   * @returns {object} - An object with the DOM element
+   */
   function getFormTagSpanDOM() {
     const formTagSpan = document.createElement("span");
     formTagSpan.classList.add("form-tag-span");
