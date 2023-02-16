@@ -200,8 +200,16 @@ headerMsgIcon.addEventListener("click", closeHeaderMsg);
 
 // Event listeners for the main search input
 formSearchInput.addEventListener("input", () => {
-  if (formSearchInput.value.length >= 3) {
-    console.log(formSearchInput.value);
+  if (formSearchInput.value.length < 3 || formSearchInput.value.length > 30) {
+    closeHeaderMsg();
+    displayHeaderMsg(
+      "Le mot-clé saisi doit être compris entre 3 et 30 caractères"
+    );
+  } else if (
+    formSearchInput.value.length >= 3 &&
+    formSearchInput.value.length <= 30
+  ) {
+    closeHeaderMsg();
   }
 });
 
