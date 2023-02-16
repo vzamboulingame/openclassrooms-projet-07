@@ -1,7 +1,10 @@
 /**
- * Function to get sorted distinct ingredients array
- * @param {array} array
- * @returns {array}
+ * Takes an array of recipes as parameter, flattens the ingredients array of each recipe,
+ * maps the ingredient name to lowercase, removes duplicates and returns an array of
+ * distinct ingredients sorted alphabetically
+ *
+ * @param {array} array - The array of recipes that we want to get the ingredients from
+ * @returns {array} - An array of distinct ingredients sorted alphabetically
  */
 export function getIngredientsArray(array) {
   return Array.from(
@@ -16,9 +19,11 @@ export function getIngredientsArray(array) {
 }
 
 /**
- * Function to get sorted distinct appliances array
- * @param {array} array
- * @returns {array}
+ * Takes an array of recipes as parameter, maps the appliances name of each recipe to lowercase,
+ * removes duplicates and returns an array of distinct appliances sorted alphabetically
+ *
+ * @param {array} array - The array of recipes that we want to get the appliances from
+ * @returns {array} - An array of distinct appliances sorted alphabetically
  */
 export function getAppliancesArray(array) {
   return Array.from(
@@ -27,9 +32,11 @@ export function getAppliancesArray(array) {
 }
 
 /**
- * Function to get sorted distinct ustensils array
- * @param {array} array
- * @returns {array}
+ * Takes an array of recipes as parameter, flattens the array of ustensils of each recipe, maps the ustensils
+ * name to lowercase, removes duplicates and returns an array of distinct ustensils sorted alphabetically
+ *
+ * @param {array} array - The array of recipes that we want to get the ustensils from
+ * @returns {array} - An array of distinct ustensils sorted alphabetically
  */
 export function getUstensilsArray(array) {
   return Array.from(
