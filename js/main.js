@@ -44,6 +44,7 @@ let filterTagArray = [];
  * for each recipe object and appends it to the recipe cards list
  *
  * @param {array} array - An array of recipe objects
+ * @returns {void}
  */
 function renderRecipeCards(array) {
   const recipeCardsList = document.querySelector(".recipes");
@@ -63,6 +64,7 @@ function renderRecipeCards(array) {
  *
  * @param {string} id - The id of the filter list element
  * @param {array} array - An array of filter list items
+ * @returns {void}
  */
 async function renderFilterListItems(id, array) {
   const filterList = document.getElementById(id);
@@ -85,6 +87,7 @@ async function renderFilterListItems(id, array) {
  *
  * @param {string} tag - The tag that will be rendered
  * @param {string} color - The color of the tag
+ * @returns {void}
  */
 function renderFormTagSpan(tag, color) {
   const formTagContainer = document.querySelector(".form-tag-container");
@@ -120,6 +123,7 @@ function renderFormTagSpan(tag, color) {
  * Takes a filter container element as parameter and displays its filter list dropdown
  *
  * @param {object} element - The filter container element object
+ * @returns {void}
  */
 function displayFormFilterDropdown(element) {
   const formFilterContainer = element;
@@ -140,6 +144,7 @@ function displayFormFilterDropdown(element) {
  * Takes a filter container element as parameter and closes its filter list dropdown
  *
  * @param {object} element - The filter container element object
+ * @returns {void}
  */
 function closeFormFilterDropdown(element) {
   const formFilterContainer = element;
@@ -157,6 +162,8 @@ function closeFormFilterDropdown(element) {
 /**
  * Refreshes the ingredientsArray, appliancesArray, ustensilsArray arrays from the
  * filtered recipes array and updates the listArrayMapping array of objects
+ *
+ * @returns {void}
  */
 async function refreshFilterArrays() {
   ingredientsArray = await getIngredientsArray(filteredRecipesArray);
@@ -173,6 +180,8 @@ async function refreshFilterArrays() {
 /**
  * Refresh all list item arrays from the filtered recipes array and
  * re-renders the recipe cards and all the filter list tems
+ *
+ * @returns {void}
  */
 async function renderAllElements() {
   await refreshFilterArrays();

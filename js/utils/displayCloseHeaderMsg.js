@@ -16,6 +16,8 @@ export function displayHeaderMsg(text) {
 /**
  * Resets the header message text and
  * hides the header message div element
+ *
+ * @returns {void}
  */
 export function closeHeaderMsg() {
   const headerMessage = document.querySelector(".header-message");
