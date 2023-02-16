@@ -9,7 +9,7 @@ export function formTagSpanFactory(tag, color) {
     formTagText.classList.add("form-tag-text");
     formTagText.textContent = tag;
 
-    const formTagIcon = document.createElement("i");
+    const formTagIcon = document.createElement("em");
     formTagIcon.classList.add("form-tag-icon");
     formTagIcon.classList.add("fa-regular");
     formTagIcon.classList.add("fa-circle-xmark");
