@@ -3,6 +3,7 @@
  * and displays the header message div element
  *
  * @param {string} text - Text that will be inserted in the header message text element
+ * @returns {void}
  */
 export function displayHeaderMsg(text) {
   const headerMessage = document.querySelector(".header-message");
@@ -14,8 +15,7 @@ export function displayHeaderMsg(text) {
 }
 
 /**
- * Resets the header message text and
- * hides the header message div element
+ * Resets the header message text and hides the header message div element
  *
  * @returns {void}
  */

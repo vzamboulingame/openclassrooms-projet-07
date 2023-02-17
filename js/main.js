@@ -59,8 +59,8 @@ function renderRecipeCards(array) {
 }
 
 /**
- * Takes an id and an array as parameters, gets the DOM element
- * for each filter list item and appends it to the filter list element
+ * Takes an id and an array as parameters, gets the DOM element for
+ * each filter list item and appends it to the filter list element
  *
  * @param {string} id - The id of the filter list element
  * @param {array} array - An array of filter list items
@@ -80,8 +80,7 @@ async function renderFilterListItems(id, array) {
 }
 
 /**
- * Takes a tag and a color as parameters, then renders the DOM element for the form tag span element,
- * appends it to the form tag container, resets / displays the header message with the recipes count
+ * Takes a tag and a color as parameters, renders the DOM element for the form tag span element
  * and adds an event listener to the tag span element's close button that removes the tag from
  * the filter tag array and re-renders the recipe card and filter list item elements
  *
@@ -131,8 +130,6 @@ function displayFormFilterDropdown(element) {
   const formFilterChevron = formFilterContainer.querySelector(
     ".form-filter-chevron"
   );
-
-  console.log(typeof element);
 
   formFilterContainer.classList.add("form-filter-dropdown");
   formFilterChevron.classList.replace("fa-chevron-down", "fa-chevron-up");

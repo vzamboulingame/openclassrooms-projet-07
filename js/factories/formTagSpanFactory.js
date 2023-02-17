@@ -1,6 +1,6 @@
 /**
- * Factory that takes a tag and a color as parameters and returns a function
- * that will generate the DOM element for the form tag span
+ * Factory that takes a tag and a color as parameters and returns an object
+ * with a function that will generate the DOM element for the form tag span
  *
  * @param {string} tag - The tag that will be displayed in the span
  * @param {string} color - The color of the form tag span

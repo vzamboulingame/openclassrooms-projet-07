@@ -5,8 +5,8 @@ import {
 } from "./getFilterArrays.js";
 
 /**
- * Takes a tagArray and a recipesArray as parameters, then it filters the recipesArray to keep only
- * the recipes that have all the tags in the tagArray
+ * Takes a tagArray and a recipesArray as parameters, then it filters the recipesArray
+ * to keep only the recipes that have all the tags in the tagArray
  *
  * @param {array} tagArray - An array of tags
  * @param {array} recipesArray - An array of recipes
