@@ -204,6 +204,10 @@ span {
         &-chevron {
             color: #ffffff;
             font-size: 1.8rem;
+
+            &:hover {
+                cursor: pointer;
+            }
         }
 
         &-list {

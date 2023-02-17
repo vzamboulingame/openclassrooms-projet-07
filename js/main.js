@@ -214,6 +214,9 @@ formSearchInput.addEventListener("input", () => {
 formFilterContainers.forEach((element) => {
   const formFilterContainer = element;
   const formFilterList = formFilterContainer.querySelector(".form-filter-list");
+  const formFilterChevron = formFilterContainer.querySelector(
+    ".form-filter-chevron"
+  );
   const formFilterInput =
     formFilterContainer.querySelector(".form-filter-input");
   const formFilterListId = formFilterList.id;
@@ -238,6 +241,10 @@ formFilterContainers.forEach((element) => {
     );
 
     renderFilterListItems(formFilterListId, filteredListArray);
+  });
+
+  formFilterChevron.addEventListener("click", () => {
+    formFilterInput.focus();
   });
 
   formFilterList.addEventListener("mousedown", (e) => {
