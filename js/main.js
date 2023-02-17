@@ -203,7 +203,11 @@ headerMsgIcon.addEventListener("click", closeHeaderMsg);
 formSearchInput.addEventListener("input", () => {
   const keyword = formSearchInput.value;
 
-  if (keyword.length < 3 || keyword.length > 30) {
+  if (keyword.length == 0) {
+    closeHeaderMsg();
+    keywordRecipesArray = tagRecipesArray;
+    renderAllElements(keywordRecipesArray);
+  } else if (keyword.length < 3 || keyword.length > 30) {
     closeHeaderMsg();
     displayHeaderMsg(
       "Le mot-clé saisi doit être compris entre 3 et 30 caractères"
