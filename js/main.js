@@ -10,7 +10,7 @@ import {
   displayHeaderMsg,
   closeHeaderMsg,
 } from "./utils/displayCloseHeaderMsg.js";
-import { searchRecipes } from "./utils/searchRecipes.js";
+import { searchRecipesWithTag } from "./utils/searchRecipesWithTag.js";
 import { recipeCardFactory } from "./factories/recipeCardFactory.js";
 import { filterListItemFactory } from "./factories/filterListItemFactory.js";
 import { formTagSpanFactory } from "./factories/formTagSpanFactory.js";
@@ -106,7 +106,7 @@ function renderFormTagSpan(tag, color) {
 
   formTagCloseBtn.addEventListener("click", () => {
     filterTagArray = filterTagArray.filter((tag) => tag != formTagTextContent);
-    filteredRecipesArray = searchRecipes(filterTagArray, recipesArray);
+    filteredRecipesArray = searchRecipesWithTag(filterTagArray, recipesArray);
 
     formTagSpanDOM.remove();
 
@@ -256,7 +256,10 @@ formFilterContainers.forEach((element) => {
 
       if (!filterTagArray.includes(filterTag)) {
         filterTagArray.push(filterTag);
-        filteredRecipesArray = searchRecipes(filterTagArray, recipesArray);
+        filteredRecipesArray = searchRecipesWithTag(
+          filterTagArray,
+          recipesArray
+        );
 
         renderFormTagSpan(filterTag, filterTagColor);
 

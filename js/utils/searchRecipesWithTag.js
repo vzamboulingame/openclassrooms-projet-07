@@ -12,7 +12,7 @@ import {
  * @param {array} recipesArray - An array of recipes
  * @returns {array} - An array of recipes that match the search criteria
  */
-export function searchRecipes(tagArray, recipesArray) {
+export function searchRecipesWithTag(tagArray, recipesArray) {
   return recipesArray.filter((recipe) => {
     const ingredients = getIngredientsArray([recipe]);
     const appliances = getAppliancesArray([recipe]);
