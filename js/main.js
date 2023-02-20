@@ -10,11 +10,10 @@ import {
   displayHeaderMsg,
   closeHeaderMsg,
 } from "./utils/displayCloseHeaderMsg.js";
-import { searchRecipesWithTag } from "./utils/searchRecipesWithTag.js";
-import { searchRecipesWithKeyword } from "./utils/searchRecipesWithKeyword.js";
 import { recipeCardFactory } from "./factories/recipeCardFactory.js";
 import { filterListItemFactory } from "./factories/filterListItemFactory.js";
 import { formTagSpanFactory } from "./factories/formTagSpanFactory.js";
+import { searchRecipesWithKeywordAndTag } from "./utils/searchRecipesWithKeywordAndTag.js";
 
 /* VARIABLES */
 
@@ -24,12 +23,11 @@ const formFilterContainers = document.querySelectorAll(
   ".form-filter-container"
 );
 
-let tagRecipesArray = recipesArray;
-let keywordRecipesArray = recipesArray;
+let filteredRecipesArray = recipesArray;
 
-let ingredientsArray = getIngredientsArray(recipesArray);
-let appliancesArray = getAppliancesArray(recipesArray);
-let ustensilsArray = getUstensilsArray(recipesArray);
+let ingredientsArray = getIngredientsArray(filteredRecipesArray);
+let appliancesArray = getAppliancesArray(filteredRecipesArray);
+let ustensilsArray = getUstensilsArray(filteredRecipesArray);
 
 let listArrayMapping = [
   { list: "ingredientsList", array: ingredientsArray },
@@ -98,7 +96,7 @@ function renderFormTagSpan(tag, color) {
 
   formTagContainer.append(formTagSpanDOM);
 
-  const recipesCount = tagRecipesArray.length;
+  const recipesCount = filteredRecipesArray.length;
   closeHeaderMsg();
   displayHeaderMsg(`${recipesCount} recette(s) trouvée(s)`);
 
@@ -108,13 +106,17 @@ function renderFormTagSpan(tag, color) {
 
   formTagCloseBtn.addEventListener("click", () => {
     filterTagArray = filterTagArray.filter((tag) => tag != formTagTextContent);
-    tagRecipesArray = searchRecipesWithTag(filterTagArray, recipesArray);
+    filteredRecipesArray = searchRecipesWithKeywordAndTag(
+      formSearchInput.value,
+      filterTagArray,
+      recipesArray
+    );
 
     formTagSpanDOM.remove();
 
-    renderAllElements(tagRecipesArray);
+    renderAllElements(filteredRecipesArray);
 
-    const recipesCount = tagRecipesArray.length;
+    const recipesCount = filteredRecipesArray.length;
     closeHeaderMsg();
     displayHeaderMsg(`${recipesCount} recette(s) trouvée(s)`);
   });
@@ -202,21 +204,30 @@ headerMsgIcon.addEventListener("click", closeHeaderMsg);
 // Event listeners for the main search input
 formSearchInput.addEventListener("input", () => {
   const keyword = formSearchInput.value;
-
   if (keyword.length == 0) {
+    filteredRecipesArray = searchRecipesWithKeywordAndTag(
+      keyword,
+      filterTagArray,
+      recipesArray
+    );
+    renderAllElements(filteredRecipesArray);
+    const recipesCount = filteredRecipesArray.length;
     closeHeaderMsg();
-    keywordRecipesArray = tagRecipesArray;
-    renderAllElements(keywordRecipesArray);
+    displayHeaderMsg(`${recipesCount} recette(s) trouvée(s)`);
   } else if (keyword.length < 3 || keyword.length > 30) {
     closeHeaderMsg();
     displayHeaderMsg(
       "Le mot-clé saisi doit être compris entre 3 et 30 caractères"
     );
   } else if (keyword.length >= 3 && keyword.length <= 30) {
-    keywordRecipesArray = searchRecipesWithKeyword(keyword, tagRecipesArray);
-    renderAllElements(keywordRecipesArray);
+    filteredRecipesArray = searchRecipesWithKeywordAndTag(
+      keyword,
+      filterTagArray,
+      recipesArray
+    );
+    renderAllElements(filteredRecipesArray);
 
-    const recipesCount = keywordRecipesArray.length;
+    const recipesCount = filteredRecipesArray.length;
     closeHeaderMsg();
 
     if (recipesCount == 0) {
@@ -239,7 +250,7 @@ formFilterContainers.forEach((element) => {
   const formFilterListId = formFilterList.id;
 
   formFilterInput.addEventListener("focus", () => {
-    renderAllElements(tagRecipesArray);
+    renderAllElements(filteredRecipesArray);
     displayFormFilterDropdown(element);
   });
 
@@ -249,7 +260,7 @@ formFilterContainers.forEach((element) => {
   });
 
   formFilterInput.addEventListener("input", () => {
-    refreshFilterArrays(tagRecipesArray);
+    refreshFilterArrays(filteredRecipesArray);
     const { array: formFilterListArray } = listArrayMapping.find(
       (item) => item.list == formFilterListId
     );
@@ -273,14 +284,19 @@ formFilterContainers.forEach((element) => {
 
       if (!filterTagArray.includes(filterTag)) {
         filterTagArray.push(filterTag);
-        tagRecipesArray = searchRecipesWithTag(filterTagArray, recipesArray);
+        filteredRecipesArray = searchRecipesWithKeywordAndTag(
+          formSearchInput.value,
+          filterTagArray,
+          recipesArray
+        );
 
         renderFormTagSpan(filterTag, filterTagColor);
 
         closeFormFilterDropdown(element);
+
         formFilterInput.value = "";
 
-        renderAllElements(tagRecipesArray);
+        renderAllElements(filteredRecipesArray);
       }
 
       closeFormFilterDropdown(element);
@@ -291,4 +307,4 @@ formFilterContainers.forEach((element) => {
 
 /* EXECUTION */
 
-renderAllElements(tagRecipesArray);
+renderAllElements(filteredRecipesArray);
