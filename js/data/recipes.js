@@ -323,7 +323,7 @@ export const recipesArray = [
         unit: "grammes",
       },
       {
-        ingredient: "Vinaigre Balsamic",
+        ingredient: "Vinaigre Balsamique",
       },
       {
         ingredient: "Huile d'olive",
@@ -334,7 +334,7 @@ export const recipesArray = [
     ],
     time: 15,
     description:
-      "Peler le concombre le couper 2, retirer les pépins. Couper les olives en morceaux, ainsi que le fromage de chèvre. Ajouter le basilic ainsi que le vinaigre balsamic et l'huile d'olives à votre gout.",
+      "Peler le concombre le couper 2, retirer les pépins. Couper les olives en morceaux, ainsi que le fromage de chèvre. Ajouter le basilic ainsi que le vinaigre balsamique et l'huile d'olive à votre gout.",
     appliance: "Saladier",
     ustensils: ["cuillère en bois", "couteau"],
   },
@@ -586,7 +586,7 @@ export const recipesArray = [
         unit: "tiges",
       },
       {
-        ingredient: "huile d'olives",
+        ingredient: "huile d'olive",
         quantity: 2,
         unit: "cuillère à soupe",
       },
@@ -935,7 +935,7 @@ export const recipesArray = [
         quantity: 1,
       },
       {
-        ingredient: "Huile d'olives",
+        ingredient: "Huile d'olive",
       },
       {
         ingredient: "Oignon",
@@ -1101,7 +1101,7 @@ export const recipesArray = [
         unit: "grammes",
       },
       {
-        ingredient: "Petits poids",
+        ingredient: "Petits pois",
         quantity: 100,
         unit: "grammes",
       },
@@ -1113,7 +1113,7 @@ export const recipesArray = [
     ],
     time: 60,
     description:
-      "Découper en cubes les carottes et pommes de terre. Faire revenir dans du beurre. Ajouter les lardons, une fois les lardons dorés, ajouter un grand verre d'eau. Ajouter les petit poids et les haricots verts ( tous deux pré cuits ). Ajouter Sel, poivre, thyms et laurier",
+      "Découper en cubes les carottes et pommes de terre. Faire revenir dans du beurre. Ajouter les lardons, une fois les lardons dorés, ajouter un grand verre d'eau. Ajouter les petit pois et les haricots verts ( tous deux pré cuits ). Ajouter Sel, poivre, thyms et laurier",
     appliance: "Poêle",
     ustensils: ["Couteau", "économe"],
   },
@@ -1319,7 +1319,7 @@ export const recipesArray = [
         unit: "grammes",
       },
       {
-        ingredient: "Huile d'olives",
+        ingredient: "Huile d'olive",
         quantity: 25,
         unit: "cl",
       },
