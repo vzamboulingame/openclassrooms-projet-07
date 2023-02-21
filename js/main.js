@@ -10,10 +10,10 @@ import {
   displayHeaderMsg,
   closeHeaderMsg,
 } from "./utils/displayCloseHeaderMsg.js";
-import { searchRecipesWithTag } from "./utils/searchRecipesWithTag.js";
 import { recipeCardFactory } from "./factories/recipeCardFactory.js";
 import { filterListItemFactory } from "./factories/filterListItemFactory.js";
 import { formTagSpanFactory } from "./factories/formTagSpanFactory.js";
+import { searchRecipesWithKeywordAndTag } from "./utils/searchRecipesWithKeywordAndTag.js";
 
 /* VARIABLES */
 
@@ -106,11 +106,15 @@ function renderFormTagSpan(tag, color) {
 
   formTagCloseBtn.addEventListener("click", () => {
     filterTagArray = filterTagArray.filter((tag) => tag != formTagTextContent);
-    filteredRecipesArray = searchRecipesWithTag(filterTagArray, recipesArray);
+    filteredRecipesArray = searchRecipesWithKeywordAndTag(
+      formSearchInput.value,
+      filterTagArray,
+      recipesArray
+    );
 
     formTagSpanDOM.remove();
 
-    renderAllElements();
+    renderAllElements(filteredRecipesArray);
 
     const recipesCount = filteredRecipesArray.length;
     closeHeaderMsg();
@@ -157,15 +161,16 @@ function closeFormFilterDropdown(element) {
 }
 
 /**
- * Refreshes the ingredientsArray, appliancesArray, ustensilsArray arrays from the
- * filtered recipes array and updates the listArrayMapping array of objects
+ * Takes a recipes array as parameter, then refreshes the ingredientsArray, appliancesArray,
+ * ustensilsArray arrays from it and updates the listArrayMapping array of objects
  *
+ * @param {array} array - The array of recipes
  * @returns {void}
  */
-async function refreshFilterArrays() {
-  ingredientsArray = await getIngredientsArray(filteredRecipesArray);
-  appliancesArray = await getAppliancesArray(filteredRecipesArray);
-  ustensilsArray = await getUstensilsArray(filteredRecipesArray);
+async function refreshFilterArrays(array) {
+  ingredientsArray = await getIngredientsArray(array);
+  appliancesArray = await getAppliancesArray(array);
+  ustensilsArray = await getUstensilsArray(array);
 
   listArrayMapping = [
     { list: "ingredientsList", array: ingredientsArray },
@@ -175,15 +180,16 @@ async function refreshFilterArrays() {
 }
 
 /**
- * Refresh all list item arrays from the filtered recipes array and
- * re-renders the recipe cards and all the filter list tems
+ * Takes a recipes array as parameter, then refreshes all list item arrays
+ * from it and re-renders the recipe cards and all the filter list tems
  *
+ * @param {array} array - The array of recipes
  * @returns {void}
  */
-async function renderAllElements() {
-  await refreshFilterArrays();
+async function renderAllElements(array) {
+  await refreshFilterArrays(array);
 
-  renderRecipeCards(filteredRecipesArray);
+  renderRecipeCards(array);
 
   listArrayMapping.forEach((element) => {
     renderFilterListItems(element.list, element.array);
@@ -197,16 +203,38 @@ headerMsgIcon.addEventListener("click", closeHeaderMsg);
 
 // Event listeners for the main search input
 formSearchInput.addEventListener("input", () => {
-  if (formSearchInput.value.length < 3 || formSearchInput.value.length > 30) {
+  const keyword = formSearchInput.value;
+  if (keyword.length == 0) {
+    filteredRecipesArray = searchRecipesWithKeywordAndTag(
+      keyword,
+      filterTagArray,
+      recipesArray
+    );
+    renderAllElements(filteredRecipesArray);
+    const recipesCount = filteredRecipesArray.length;
+    closeHeaderMsg();
+    displayHeaderMsg(`${recipesCount} recette(s) trouvée(s)`);
+  } else if (keyword.length < 3 || keyword.length > 30) {
     closeHeaderMsg();
     displayHeaderMsg(
       "Le mot-clé saisi doit être compris entre 3 et 30 caractères"
     );
-  } else if (
-    formSearchInput.value.length >= 3 &&
-    formSearchInput.value.length <= 30
-  ) {
+  } else if (keyword.length >= 3 && keyword.length <= 30) {
+    filteredRecipesArray = searchRecipesWithKeywordAndTag(
+      keyword,
+      filterTagArray,
+      recipesArray
+    );
+    renderAllElements(filteredRecipesArray);
+
+    const recipesCount = filteredRecipesArray.length;
     closeHeaderMsg();
+
+    if (recipesCount == 0) {
+      displayHeaderMsg(`Pas de recettes correspondant au mot-clé saisi`);
+    } else {
+      displayHeaderMsg(`${recipesCount} recette(s) trouvée(s)`);
+    }
   }
 });
 
@@ -222,7 +250,7 @@ formFilterContainers.forEach((element) => {
   const formFilterListId = formFilterList.id;
 
   formFilterInput.addEventListener("focus", () => {
-    renderAllElements();
+    renderAllElements(filteredRecipesArray);
     displayFormFilterDropdown(element);
   });
 
@@ -232,7 +260,7 @@ formFilterContainers.forEach((element) => {
   });
 
   formFilterInput.addEventListener("input", () => {
-    refreshFilterArrays();
+    refreshFilterArrays(filteredRecipesArray);
     const { array: formFilterListArray } = listArrayMapping.find(
       (item) => item.list == formFilterListId
     );
@@ -256,7 +284,8 @@ formFilterContainers.forEach((element) => {
 
       if (!filterTagArray.includes(filterTag)) {
         filterTagArray.push(filterTag);
-        filteredRecipesArray = searchRecipesWithTag(
+        filteredRecipesArray = searchRecipesWithKeywordAndTag(
+          formSearchInput.value,
           filterTagArray,
           recipesArray
         );
@@ -264,9 +293,10 @@ formFilterContainers.forEach((element) => {
         renderFormTagSpan(filterTag, filterTagColor);
 
         closeFormFilterDropdown(element);
+
         formFilterInput.value = "";
 
-        renderAllElements();
+        renderAllElements(filteredRecipesArray);
       }
 
       closeFormFilterDropdown(element);
@@ -277,4 +307,4 @@ formFilterContainers.forEach((element) => {
 
 /* EXECUTION */
 
-renderAllElements();
+renderAllElements(filteredRecipesArray);
