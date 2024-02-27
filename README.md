@@ -9,10 +9,6 @@
 ![vscode][vscode-badge]
 ![w3c][w3c-badge]
 
-## Demo
-
-https://lespetitsplats-vza.netlify.app
-
 ## Description
 
 Vous êtes freelance et vous venez d’être missionné par l’entreprise “Les petits plats” en tant que développeur front-end pour une mission de 3 mois. 
